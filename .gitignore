@@ -1,0 +1,5 @@
+.DS_Store
+.vercel
+# Médias bruts : seuls les fichiers optimisés (img/, videos/) partent en ligne
+Résultats élèves Screen/
+Etude de cas*/
