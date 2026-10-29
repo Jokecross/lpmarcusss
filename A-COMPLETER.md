@@ -13,7 +13,7 @@ Pour tout retrouver : `grep -n "À COMPLÉTER\|À FOURNIR" index.html`
 | Pixel TikTok | `PIXELS.tiktok` (page + SubmitForm à l'envoi) | à fournir |
 | E-mail de contact | `CONTACT_EMAIL` | à fournir (la page KOS affiche contact@marcuus-lawrence.com) |
 | CGU, Politique de confidentialité, CGV | `LIENS.cgu`, `LIENS.confidentialite`, `LIENS.cgv` | à fournir (le lien de la case de consentement suit `LIENS.confidentialite`) |
-| Photos de Marcuus | `img/marcuus-2017-2026.webp` + `img/avatar-marcuus-profil.webp` (signature du mot de Marcuus : sa photo de profil, fournie le 29/10) | **provisoire** : découpée dans une capture d'écran de sa page ; remplacer par les originaux (même cadrage, fond #FAEFE9) |
+| Photos de Marcuus | `img/marcuus-2017-2026.webp` + `img/avatar-marcuus-v2.webp` (signature du mot de Marcuus : sa photo de profil du 29/10, recadrée sans « 1ER NOV ») | **provisoire** : découpée dans une capture d'écran de sa page ; remplacer par les originaux (même cadrage, fond #FAEFE9) |
 | Image de partage | `og:image` dans `<head>` | mettre l'adresse absolue quand le domaine est connu |
 | Indexation Google | `<meta name="robots" content="noindex">` + en-tête `X-Robots-Tag` dans `vercel.json` | noindex par défaut, à confirmer |
 
