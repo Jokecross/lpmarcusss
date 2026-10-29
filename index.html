@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Masterclass Black Friday 2026 — Marcus Lawrence</title>
-<meta name="description" content="Une extension de KOS 2.0, tournée pour le Black Friday 2026 : la masterclass, ton outil construit avec l’IA et un coach IA sur WhatsApp.">
+<title>Masterclass Black Friday 2026 — Marcuus Lawrence</title>
+<meta name="description" content="Une extension de KOS 2.0, tournée pour le Black Friday 2026 : la masterclass, ton cockpit Black Friday et un coach IA sur WhatsApp, pour moins que le prix d’un McDo.">
 <meta name="theme-color" content="#FFFFFF">
 <!-- Indexation : à confirmer avec Martin. Retirer cette ligne pour laisser Google indexer la page. -->
 <meta name="robots" content="noindex">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
-<meta property="og:title" content="Masterclass Black Friday 2026 — Marcus Lawrence">
-<meta property="og:description" content="Prépare ton Black Friday 2026 avec la méthode de Marcus et l’IA.">
+<meta property="og:title" content="Masterclass Black Friday 2026 — Marcuus Lawrence">
+<meta property="og:description" content="Prépare ton Black Friday 2026 avec la méthode de Marcuus et l’IA.">
 <!-- [À COMPLÉTER] mettre l'adresse absolue une fois le domaine connu (https://…/img/partage.jpg) -->
 <meta property="og:image" content="img/partage.jpg">
 <meta property="og:image:width" content="1200">
@@ -28,14 +28,14 @@
 
 <style>
 /* ============================================================
-   CHARTE — reprise de la page KOS 2.0 de Marcus (relevés faits
+   CHARTE — reprise de la page KOS 2.0 de Marcuus (relevés faits
    sur ses captures d'écran). Titres : Lora 700 resserrée ·
    Texte : Roboto. Même DA, finition plus éditoriale.
    ============================================================ */
 :root{
   --blanc:        #FFFFFF;
   --creme:        #FFFBF8;   /* fond des cartes douces */
-  --peche:        #FAEFE9;   /* sections pêche (= fond de la photo de Marcus) */
+  --peche:        #FAEFE9;   /* sections pêche (= fond de la photo de Marcuus) */
   --peche-2:      #F6E3D8;
   --peche-voile:  #FEECE7;
   --corail:       #E86C46;   /* mots clés */
@@ -260,7 +260,19 @@ h1 u, h2 u{ text-decoration-thickness:2px; text-underline-offset:6px; }
 .date-mois{ display:flex; flex-direction:column; justify-content:center; padding:10px 18px 10px 16px; text-align:left; }
 .date-mois b{ font-family:var(--serif); font-size:20px; color:var(--noir); letter-spacing:-.02em; line-height:1.1; }
 .date-mois span{ font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gris); margin-top:3px; }
+.jour-cle{ margin:14px auto 0; max-width:26ch; text-align:center; font-size:clamp(19px, 5.2vw, 23px); line-height:1.35; color:#2A2321; }
+.jour-cle em{ font-weight:700; }
 .maintenant .texte{ margin-top:22px; font-size:17.5px; text-align:center; }
+.lettre{ position:relative; margin-top:40px; padding:30px 24px 24px; text-align:left; }
+.lettre::before{ /* petit onglet corail, comme une note épinglée */
+  content:""; position:absolute; top:-1px; left:24px; width:46px; height:4px; border-radius:0 0 4px 4px; background:var(--corail);
+}
+.lettre h3{ font-size:clamp(22px, 6vw, 27px); }
+.lettre p{ margin-top:14px; color:#3A302C; font-size:16.5px; line-height:1.65; }
+.lettre h3 + p{ margin-top:16px; }
+.signature{ display:flex; align-items:center; gap:12px; margin-top:22px !important; padding-top:18px; border-top:1px solid var(--trait); }
+.signature img{ width:44px; height:44px; border-radius:50%; object-fit:cover; box-shadow:0 0 0 3px #fff, 0 0 0 4px var(--corail-bord); }
+.signature span{ font-family:var(--serif); font-style:italic; font-weight:700; font-size:21px; color:var(--corail-fonce); letter-spacing:-.01em; }
 .citation{
   margin:28px auto 0; max-width:30ch; padding:18px 22px; border-radius:18px;
   background:#fff; border:1px solid var(--trait); box-shadow:var(--ombre-carte);
@@ -279,19 +291,33 @@ h1 u, h2 u{ text-decoration-thickness:2px; text-underline-offset:6px; }
 /* ============================================================
    E. CE QUE TU VAS VOIR
    ============================================================ */
-.programme{ margin-top:30px; padding:6px 22px; }
-.programme ol{ list-style:none; margin:0; padding:0; }
+.programme{ margin-top:30px; padding:0; overflow:hidden; }
+.programme ol{ list-style:none; margin:0; padding:6px 22px; }
 .programme li{ display:flex; gap:16px; align-items:baseline; padding:18px 0; border-bottom:1px solid var(--trait); font-weight:500; font-size:17px; color:#2A2321; line-height:1.45; }
 .programme li span{ text-wrap:pretty; }
 .programme li:last-child{ border-bottom:0; }
+.programme-pied{
+  display:flex; gap:12px; align-items:flex-start; margin:0; padding:18px 22px;
+  background:var(--peche) var(--grain); border-top:1px solid var(--trait);
+  font-weight:700; font-size:16.5px; line-height:1.45; color:var(--noir);
+}
+.programme-pied .rond{ width:26px; height:26px; margin-top:-1px; }
+.programme-pied .rond svg{ width:13px; height:13px; }
 .programme li b{ flex-shrink:0; width:30px; font-family:var(--serif); font-weight:700; font-size:19px; color:var(--corail); letter-spacing:-.02em; }
 
 /* ============================================================
    F. CE QUE TU REÇOIS
    ============================================================ */
 .pack{ margin-top:34px; padding:0; overflow:hidden; }
-.pack-items{ display:grid; }
-.recu{ display:flex; gap:16px; align-items:flex-start; padding:22px; border-bottom:1px solid var(--trait); }
+.pack-items{ display:grid; gap:1px; background:var(--trait); }
+.recu{ position:relative; display:flex; gap:16px; align-items:flex-start; padding:22px; background:#fff; }
+.recu-num{ display:block; margin-bottom:4px; font-family:var(--serif); font-weight:700; font-size:14px; color:var(--corail); letter-spacing:.02em; }
+.recu.bonus{ background:radial-gradient(120% 120% at 100% 0%, var(--peche-voile) 0%, rgba(254,236,231,0) 70%), #FFFBF8; }
+.recu.bonus .recu-ico{ background:var(--corail); border-color:var(--corail); color:#fff; box-shadow:0 10px 20px -10px rgba(232,108,70,.9); }
+.badge-bonus{
+  display:inline-block; margin-bottom:6px; padding:4px 10px; border-radius:999px;
+  background:var(--noir); color:#fff; font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+}
 .recu-ico{
   width:50px; height:50px; border-radius:15px; display:grid; place-items:center; flex-shrink:0;
   background:linear-gradient(160deg, #FFF3EE, var(--peche-voile)); border:1px solid var(--corail-bord); color:var(--corail);
@@ -299,9 +325,10 @@ h1 u, h2 u{ text-decoration-thickness:2px; text-underline-offset:6px; }
 .recu-ico svg{ width:23px; height:23px; }
 .recu h3{ font-size:21px; }
 .recu p{ margin-top:6px; color:#4A403C; }
-.pack-pied{ padding:20px 22px 22px; background:var(--peche) var(--grain); text-align:center; }
-.partenariat{ margin:0 auto; max-width:32ch; font-size:clamp(18px, 5vw, 22px); line-height:1.4; color:#1a1a1a; }
-.partenariat em{ font-weight:700; }
+.pack-pied{ padding:24px 22px 26px; background:var(--peche) var(--grain); border-top:1px solid var(--trait); text-align:center; }
+.pack-question{ font-family:var(--serif); font-weight:700; font-size:clamp(21px, 5.8vw, 25px); color:var(--noir); letter-spacing:-.02em; }
+.partenariat{ margin:10px auto 0; max-width:46ch; font-size:16.5px; line-height:1.6; color:#3A302C; }
+.partenariat em{ font-style:normal; font-weight:700; color:var(--corail-fonce); }
 
 /* ============================================================
    G. POUR QUI
@@ -310,11 +337,18 @@ h1 u, h2 u{ text-decoration-thickness:2px; text-underline-offset:6px; }
 .pour-qui .grande::before{
   content:"“"; position:absolute; top:-18px; right:14px; font-family:var(--serif); font-weight:700; font-size:150px; line-height:1; color:var(--corail); opacity:.14;
 }
-.pour-qui .grande .accroche{ position:relative; font-size:clamp(23px, 6.2vw, 29px); line-height:1.22; font-weight:700; color:var(--noir); letter-spacing:-0.025em; }
-.pour-qui .grande p + p{ margin-top:16px; font-size:17px; }
-.pour-qui .petite{ display:flex; gap:14px; align-items:flex-start; margin-top:14px; padding:18px 20px; font-size:15.5px; background:var(--creme); box-shadow:none; }
-.pour-qui .petite strong{ color:var(--noir); }
-.tag{ flex-shrink:0; margin-top:2px; padding:4px 9px; border-radius:8px; background:var(--noir); color:#fff; font-size:11px; font-weight:700; letter-spacing:.08em; white-space:nowrap; }
+.pour-qui .grande h3{ position:relative; font-size:clamp(25px, 6.8vw, 31px); }
+.pour-qui .grande p{ position:relative; margin-top:12px; font-size:17px; }
+.pour-qui .petite{ margin-top:14px; padding:22px 22px; background:var(--creme); box-shadow:none; }
+.pour-qui .petite h3{ font-size:20px; }
+.pour-qui .petite p{ margin-top:8px; font-size:15.5px; color:#4A403C; }
+.niveau{
+  display:flex; align-items:center; justify-content:center; gap:10px; width:max-content; max-width:100%; margin:24px auto 0;
+  padding:10px 16px; border-radius:999px; background:#fff; border:1px solid var(--trait); box-shadow:var(--ombre-carte);
+  font-weight:700; font-size:15px; line-height:1.35; color:var(--noir);
+}
+.niveau .rond{ width:24px; height:24px; }
+.niveau .rond svg{ width:12px; height:12px; }
 
 /* ============================================================
    H. COMMENT ÇA SE PASSE
@@ -338,11 +372,11 @@ h1 u, h2 u{ text-decoration-thickness:2px; text-underline-offset:6px; }
 .etape p{ margin-top:5px; color:#4A403C; font-size:16px; }
 
 /* ============================================================
-   I. QUI EST MARCUS
+   I. QUI EST MARCUUS
    ============================================================ */
-.marcus figure{ margin:30px -8px 0; }
-.marcus .texte{ margin-top:26px; font-size:17.5px; }
-.marcus .texte + .texte{ margin-top:16px; }
+.marcuus figure{ margin:30px -8px 0; }
+.marcuus .texte{ margin-top:26px; font-size:17.5px; }
+.marcuus .texte + .texte{ margin-top:16px; }
 .vagues{ list-style:none; margin:18px 0 0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .vagues li{ padding:14px 16px; border-radius:16px; background:#fff; border:1px solid var(--trait); box-shadow:var(--ombre-carte); }
 .vagues b{ display:block; font-family:var(--serif); font-size:22px; color:var(--corail); letter-spacing:-.02em; line-height:1.1; }
@@ -554,17 +588,19 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
   .duo{ grid-template-columns:1fr 1fr; gap:22px; align-items:stretch; margin-top:40px; }
   .duo .neutre{ margin:24px 0; padding-bottom:30px; border-radius:var(--rayon); }
   .duo .positive{ margin-top:0; }
-  .programme{ padding:6px 34px; }
-  .pack-items{ grid-template-columns:repeat(3, 1fr); }
-  .recu{ flex-direction:column; padding:32px 28px; border-bottom:0; border-right:1px solid var(--trait); }
-  .recu:last-child{ border-right:0; }
-  .pack-pied{ padding:26px 30px; }
+  .pack-items{ grid-template-columns:repeat(2, 1fr); }
+  .recu{ padding:28px 28px; }
+  .recu.bonus{ grid-column:1 / -1; align-items:center; }
+  .pack-pied{ padding:30px 40px; }
+  .programme ol{ padding:6px 34px; }
+  .programme-pied{ padding:20px 34px; }
+  .lettre{ padding:40px 44px 32px; }
   .etapes{ grid-template-columns:repeat(3, 1fr); max-width:none; gap:24px; }
   .etape{ flex-direction:column; align-items:center; text-align:center; padding-bottom:0; }
   .etape::before{ left:calc(50% + 34px); right:calc(-50% + 22px); width:auto; top:23px; bottom:auto; height:2px;
     background:repeating-linear-gradient(90deg, var(--corail-bord) 0 6px, transparent 6px 12px); }
   .etape-corps{ padding:6px 8px 0; }
-  .marcus figure{ margin:40px 0 0; }
+  .marcuus figure{ margin:40px 0 0; }
   .vagues{ grid-template-columns:repeat(4, 1fr); }
   .mosaique{ columns:3; column-gap:16px; }
   .capture{ margin-bottom:16px; }
@@ -599,6 +635,11 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
   <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 9.2v5.6l4.8-2.8z" fill="currentColor"/></symbol>
   <symbol id="i-outil" viewBox="0 0 24 24"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6zM18.5 14l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8zM6 15l.6 1.6 1.6.6-1.6.6L6 19.4l-.6-1.6-1.6-.6 1.6-.6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
   <symbol id="i-bulle" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 0 0-7.4 12.7L3.5 20.5l4.4-1.1A8.5 8.5 0 1 0 12 3.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.8 8.6c.2-.4.5-.5.8-.5h.6c.2 0 .4.1.5.4l.7 1.6c.1.3 0 .5-.1.7l-.5.6c.5 1 1.3 1.8 2.3 2.3l.6-.5c.2-.2.5-.2.7-.1l1.6.7c.3.1.4.3.4.5v.6c0 .3-.1.6-.5.8-.6.4-1.4.5-2.2.2a8.3 8.3 0 0 1-4.8-4.8c-.3-.8-.2-1.6.2-2.2z" fill="currentColor"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 8.5h18" stroke="currentColor" stroke-width="2"/><path d="M10 12l-2.5 2.5L10 17M14 12l2.5 2.5L14 17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-jauge" viewBox="0 0 24 24"><path d="M4 16a8 8 0 1 1 16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 16l4-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="16" r="1.8" fill="currentColor"/><path d="M6.5 11.5l1 .8M12 7.5v1.3M17.5 11.5l-1 .8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-contacts" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M16 6.5a3 3 0 0 1 0 5.6M17.5 14.3c1.7.6 2.8 2.2 3.1 4.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-casque" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="13" width="4.5" height="6.5" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="16.5" y="13" width="4.5" height="6.5" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M18.8 19.5c0 1.5-1.8 2.5-5.3 2.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-cadeau" viewBox="0 0 24 24"><rect x="3.5" y="9" width="17" height="11.5" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2.5 9h19v3.5h-19zM12 9v11.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M12 9C9 9 7 7.8 7 6.2 7 4.9 8 4 9.2 4 11 4 12 6.5 12 9zm0 0c3 0 5-1.2 5-2.8C17 4.9 16 4 14.8 4 13 4 12 6.5 12 9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5zm1.8.3L12 12.2l7.2-5.4" fill="currentColor"/><path d="M4.6 7.2L12 12.6l7.4-5.4" fill="none" stroke="#191919" stroke-width="1.6"/></symbol>
 </svg>
 
@@ -622,8 +663,8 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
     <section class="hero" id="hero">
       <div class="col">
         <p class="surtitre">Une extension de KOS 2.0, tournée pour le Black Friday 2026</p>
-        <h1>Prépare ton <em class="insecable trait-main">Black Friday 2026</em> avec la méthode de Marcus et <u>l’IA</u></h1>
-        <p class="accroche">Grâce à un partenariat avec un logiciel IA, accède à la masterclass pour <em>moins cher qu’un resto</em>.</p>
+        <h1>Prépare ton <em class="insecable trait-main">Black Friday 2026</em> avec la méthode de Marcuus et <u>l’IA</u></h1>
+        <p class="accroche">Grâce à un partenariat avec un logiciel IA, accède à la masterclass pour <em>moins que le prix d’un McDo</em>.</p>
       </div>
 
       <div class="col">
@@ -640,7 +681,7 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
 
         <div class="bloc-cta">
           <button type="button" class="cta" data-open-modal>JE VEUX MON ACCÈS <svg><use href="#i-chevron"/></svg></button>
-          <p class="sous-cta"><span class="point-vert" aria-hidden="true"></span>Un membre de l’équipe t’appelle dans les 10 minutes.</p>
+          <p class="sous-cta"><span class="point-vert" aria-hidden="true"></span>Un membre de l’équipe te contacte sur WhatsApp dans les 10 minutes.</p>
         </div>
 
         <a class="preuve" href="#etudes">
@@ -650,7 +691,7 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
             <img src="img/avatar-antoine.webp" width="120" height="120" alt="">
             <img src="img/avatar-malory.webp" width="120" height="120" alt="">
           </span>
-          <span><strong>Des élèves de Marcus</strong> racontent<br><u>leur parcours plus bas</u></span>
+          <span><strong>Des élèves de Marcuus</strong> racontent<br><u>leur parcours plus bas</u></span>
         </a>
       </div>
     </section>
@@ -665,8 +706,18 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
         <span class="date-mois"><b>Novembre 2026</b><span>Vendredi</span></span>
       </div>
       <h2 class="r">Le Black Friday 2026, c’est le <em class="insecable">27 novembre</em>.</h2>
+      <p class="jour-cle accroche r">C’est <em>LE</em> jour de l’année où les gens sont prêts à acheter.</p>
       <p class="texte r">Pour beaucoup d’e-commerçants, c’est la période la plus importante de l’année. Les acheteurs sont là, prêts à commander. La différence se fait sur la préparation : le bon produit, la bonne offre, et des pubs lancées au bon moment.</p>
       <p class="citation r">Cette année, ne le regarde pas passer.</p>
+
+      <!-- Le mot de Marcuus, à la première personne -->
+      <div class="carte lettre r">
+        <h3>Pourquoi j’ai préparé cette masterclass</h3>
+        <p>J’avais fait une promesse : les candidatures pour KOS 2.0 fermeraient le dimanche 8 novembre à minuit. J’ai tenu parole.</p>
+        <p>Mais je veux aussi aider ceux qui n’ont pas pu rejoindre le programme à passer à l’action, pour profiter de l’opportunité de la nouvelle vague Claude AI. Après cette semaine de lives, je me suis donc demandé ce que je pouvais leur proposer pour les aider à générer des ventes maintenant, sans attendre 2027.</p>
+        <p>J’ai passé tout mon lundi matin à préparer cette masterclass et j’ai mobilisé mes équipes pour la mettre à disposition avant le Black Friday du 27 novembre. L’idée : réunir mes meilleurs conseils et un plan d’action concret pour réussir ton Black Friday.</p>
+        <p class="signature"><img src="img/avatar-marcuus.webp" width="120" height="120" alt="" loading="lazy" decoding="async"><span>— Marcuus</span></p>
+      </div>
     </div>
   </section>
 
@@ -682,9 +733,9 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
             <h3>Ce que ce n’est pas</h3>
           </div>
           <ul class="liste">
-            <li><span class="rond rond-s croix"><svg><use href="#i-croix"/></svg></span>Une version de KOS 2.0 : elle ne le remplace pas</li>
-            <li><span class="rond rond-s croix"><svg><use href="#i-croix"/></svg></span>Une formation pour créer ta boutique de A à Z</li>
-            <li><span class="rond rond-s croix"><svg><use href="#i-croix"/></svg></span>Une promesse de résultat</li>
+            <li><span class="rond rond-s croix"><svg><use href="#i-croix"/></svg></span>Pas une version de KOS 2.0. Le programme complet pour bâtir une marque pérenne, c’est KOS.</li>
+            <li><span class="rond rond-s croix"><svg><use href="#i-croix"/></svg></span>Pas juste des vidéos à regarder.</li>
+            <li><span class="rond rond-s croix"><svg><use href="#i-croix"/></svg></span>Pas une promesse de résultat.</li>
           </ul>
         </div>
         <div class="carte positive r">
@@ -693,9 +744,9 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
             <h3>Ce que c’est</h3>
           </div>
           <ul class="liste">
-            <li><span class="rond rond-s coche"><svg><use href="#i-coche"/></svg></span>Une masterclass faite uniquement pour le Black Friday 2026</li>
-            <li><span class="rond rond-s coche"><svg><use href="#i-coche"/></svg></span>Un plan d’action concret pour préparer ta campagne</li>
-            <li><span class="rond rond-s coche"><svg><use href="#i-coche"/></svg></span>Pour ceux qui ont déjà des bases en e-commerce</li>
+            <li><span class="rond rond-s coche"><svg><use href="#i-coche"/></svg></span>Une masterclass complète pour lancer un shop à succès spécial Black Friday 2026.</li>
+            <li><span class="rond rond-s coche"><svg><use href="#i-coche"/></svg></span>Un plan d’action jour par jour jusqu’au 27 novembre, avec les outils pour l’appliquer.</li>
+            <li><span class="rond rond-s coche"><svg><use href="#i-coche"/></svg></span>Fonctionne peu importe ton niveau en e-commerce.</li>
           </ul>
         </div>
       </div>
@@ -706,18 +757,20 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
   </section>
 
   <!-- ========== E. CE QUE TU VAS VOIR ========== -->
-  <!-- Contenu à valider avec l'équipe de Marcus -->
+  <!-- Contenu à valider avec l'équipe de Marcuus -->
   <section class="contenu peche">
     <div class="col">
       <p class="etiquette r"><b>03</b>Le contenu</p>
-      <h2 class="r">Dans la masterclass, <em>Marcus te montre</em> :</h2>
+      <h2 class="r"><em>Marcuus</em> te montre</h2>
       <div class="carte programme r">
         <ol>
-          <li><b>01</b><span>Quels produits pousser pour le Black&nbsp;Friday</span></li>
-          <li><b>02</b><span>Quelle offre faire pour donner envie d’acheter</span></li>
-          <li><b>03</b><span>Quand et comment lancer tes&nbsp;pubs</span></li>
-          <li><b>04</b><span>Comment utiliser l’IA pour tout préparer en quelques&nbsp;jours</span></li>
+          <li><b>01</b><span>Quel produit sélectionner et vendre pour maximiser ton bénéfice sur le Black Friday&nbsp;2026.</span></li>
+          <li><b>02</b><span>Quelle offre faire pour donner envie d’acheter.</span></li>
+          <li><b>03</b><span>Quand et comment lancer tes&nbsp;pubs.</span></li>
+          <li><b>04</b><span>Comment utiliser l’IA pour tout préparer en quelques&nbsp;jours.</span></li>
+          <li><b>05</b><span>Une stratégie exclusive pour te lancer sans budget pub. Et si tu fais déjà de la pub, elle vient renforcer ce que tu mets en&nbsp;place.</span></li>
         </ol>
+        <p class="programme-pied"><span class="rond coche"><svg><use href="#i-coche"/></svg></span>À la fin : un plan d’action clair, jour par jour, jusqu’au 27&nbsp;novembre.</p>
       </div>
     </div>
   </section>
@@ -726,33 +779,62 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
   <section class="recois">
     <div class="large">
       <p class="etiquette r"><b>04</b>Ton accès</p>
-      <h2 class="r">Ce que tu <em>reçois</em></h2>
+      <h2 class="r">Tout ce que tu <em>reçois</em></h2>
       <div class="carte pack r">
         <div class="pack-items">
           <div class="recu">
             <span class="recu-ico"><svg><use href="#i-video"/></svg></span>
             <div>
-              <h3>Les vidéos de la masterclass</h3>
-              <p>La méthode de Marcus pour le Black Friday, étape par étape.</p>
+              <span class="recu-num">01</span><h3>La masterclass Black Friday et ton plan d’action</h3>
+              <p>Les vidéos de Marcuus, et un plan jour par jour jusqu’au 27 novembre.</p>
             </div>
           </div>
           <div class="recu">
-            <span class="recu-ico"><svg><use href="#i-outil"/></svg></span>
+            <span class="recu-ico"><svg><use href="#i-code"/></svg></span>
             <div>
-              <h3>Ton outil, construit avec l’IA</h3>
-              <p>Tu le construis toi-même, jour après jour, pour préparer ta campagne.</p>
+              <span class="recu-num">02</span><h3>L’accès au logiciel IA partenaire</h3>
+              <p>Il te permet de créer des sites et des outils juste en les décrivant, sans coder. C’est avec lui que tu construis ton cockpit.</p>
+            </div>
+          </div>
+          <div class="recu">
+            <span class="recu-ico"><svg><use href="#i-jauge"/></svg></span>
+            <div>
+              <span class="recu-num">03</span><h3>Ton cockpit Black Friday</h3>
+              <p>L’outil que tu construis toi-même avec le logiciel, étape par étape. Il calcule ta marge au prix Black Friday, te propose tes offres, te donne ton planning jusqu’au 27 et t’écrit tes pubs, tes mails et tes SMS.</p>
+            </div>
+          </div>
+          <div class="recu">
+            <span class="recu-ico"><svg><use href="#i-contacts"/></svg></span>
+            <div>
+              <span class="recu-num">04</span><h3>Ta liste de personnes à contacter</h3>
+              <p>Tu auras aussi accès à une liste de personnes qui peuvent t’aider à aller chercher tes premières ventes pour le Black Friday, sans dépenser un seul euro en publicité. On ne peut pas t’en dire plus ici sans te dévoiler la stratégie.</p>
             </div>
           </div>
           <div class="recu">
             <span class="recu-ico"><svg><use href="#i-bulle"/></svg></span>
             <div>
-              <h3>Un coach IA sur WhatsApp</h3>
-              <p>Il répond à tes questions jusqu’au Black Friday, à toute heure.</p>
+              <span class="recu-num">05</span><h3>Ton coach IA sur WhatsApp</h3>
+              <p>Un assistant IA qui connaît la masterclass et la méthode de Marcuus. Tu lui écris quand tu bloques (ton produit, ton offre, ta campagne) et il te répond à toute heure, jusqu’au Black Friday. Il est inclus dans l’offre.</p>
+            </div>
+          </div>
+          <div class="recu">
+            <span class="recu-ico"><svg><use href="#i-casque"/></svg></span>
+            <div>
+              <span class="recu-num">06</span><h3>Ton appel de set-up</h3>
+              <p>Un membre de l’équipe te contacte sur WhatsApp pour te donner ton accès et t’aider à tout mettre en place.</p>
+            </div>
+          </div>
+          <div class="recu bonus">
+            <span class="recu-ico"><svg><use href="#i-cadeau"/></svg></span>
+            <div>
+              <span class="badge-bonus">Bonus</span><h3>Les replays du défi avec Ibrahim</h3>
+              <p>Offerts en bonus, indisponibles ailleurs.</p>
             </div>
           </div>
         </div>
         <div class="pack-pied">
-          <p class="partenariat accroche">Et grâce à notre partenariat avec un logiciel IA, tout ça est accessible pour <em>moins cher qu’un resto</em>.</p>
+          <p class="pack-question">Pourquoi si peu cher ?</p>
+          <p class="partenariat">Une entreprise spécialisée dans l’IA finance une grosse partie de l’offre, en échange de la découverte de son logiciel, auquel tu as aussi accès. C’est pour ça que tout est accessible pour <em>moins que le prix d’un McDo</em>.</p>
         </div>
       </div>
       <div class="bloc-cta r">
@@ -767,13 +849,14 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
       <p class="etiquette r"><b>05</b>Pour qui</p>
       <h2 class="r">C’est pour <em>toi</em> ?</h2>
       <div class="carte positive grande r">
-        <p class="accroche">Tu n’as pas pu rejoindre KOS 2.0 pendant le défi ? <em>Cette masterclass est faite pour toi.</em></p>
-        <p>Tu as vu ce que Marcus a montré pendant les lives : là, tu as un moyen concret de passer à l’action pour le Black Friday.</p>
+        <h3>Tu n’as pas rejoint <em>KOS 2.0</em></h3>
+        <p>C’est une opportunité de te lancer, de chercher tes premières ventes et de prendre de l’avance avant la potentielle réouverture du programme en 2027.</p>
       </div>
       <div class="carte petite r">
-        <span class="tag">KOS 2.0</span>
-        <p><strong>Tu es déjà dans KOS 2.0 ?</strong> C’est la cerise sur le gâteau pour ce Black Friday. Ça ne remplace rien de ce que tu as dans KOS.</p>
+        <h3>Tu es déjà dans KOS 2.0</h3>
+        <p>Tu as tout ce qu’il faut pour bâtir une marque pérenne. Cette masterclass vient en extension, avec une stratégie complémentaire dédiée au Black Friday. Tu pourras l’exploiter encore davantage grâce à ce que tu mets déjà en place dans KOS.</p>
       </div>
+      <p class="niveau r"><span class="rond coche"><svg><use href="#i-coche"/></svg></span>Fonctionne peu importe ton niveau en e-commerce.</p>
     </div>
   </section>
 
@@ -793,31 +876,31 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
         <li class="etape r">
           <span class="etape-num">2</span>
           <div class="etape-corps">
-            <h3>Un membre de l’équipe t’appelle dans les 10 minutes</h3>
-            <p>Sur ton numéro ou sur WhatsApp. Il répond à tes questions et voit avec toi si c’est fait pour toi.</p>
+            <h3>Un membre de l’équipe te contacte sur WhatsApp dans les 10 minutes</h3>
+            <p>C’est ton appel de set-up : il te donne ton accès et t’aide à tout mettre en place.</p>
           </div>
         </li>
         <li class="etape r">
           <span class="etape-num">3</span>
           <div class="etape-corps">
-            <h3>Tu accèdes à tout</h3>
-            <p>La masterclass, ton outil et ton coach.</p>
+            <h3>Tu es prêt à chiffrer pour le Black Friday 2026</h3>
+            <p>Tu accèdes à tout, la masterclass, ton outil et ton coach.</p>
           </div>
         </li>
       </ol>
     </div>
   </section>
 
-  <!-- ========== I. QUI EST MARCUS ==========
+  <!-- ========== I. QUI EST MARCUUS ==========
        Version courte de la présentation de sa page principale. Aucun chiffre ajouté.
        Photo : découpée dans une capture de sa page (provisoire, voir A-COMPLETER.md). -->
-  <section class="marcus peche">
+  <section class="marcuus peche">
     <div class="col">
-      <p class="etiquette r"><b>07</b>Qui est Marcus</p>
+      <p class="etiquette r"><b>07</b>Qui est Marcuus</p>
       <h2 class="r">Enchanté, moi c’est <em>Marcuus Lawrence</em></h2>
       <figure class="r">
-        <img src="img/marcus-2017-2026.webp" width="1000" height="709" loading="lazy" decoding="async"
-             alt="Marcus en 2017, puis en 2026">
+        <img src="img/marcuus-2017-2026.webp" width="1000" height="709" loading="lazy" decoding="async"
+             alt="Marcuus en 2017, puis en 2026">
       </figure>
       <p class="texte r">J’ai commencé l’ecom de 0 alors que j’étais employé chez Domino’s Pizza, payé au SMIC.</p>
       <p class="texte r">Depuis, j’ai bâti un empire grâce aux précédentes vagues de l’e-com :</p>
@@ -831,13 +914,13 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
   </section>
 
   <!-- ========== ÉTUDES DE CAS VIDÉO ==========
-       Vidéos de l'équipe de Marcus (dossier « Etude de cas élèves », hors git),
+       Vidéos de l'équipe de Marcuus (dossier « Etude de cas élèves », hors git),
        recompressées dans videos/. Rien n'est chargé avant le clic.
        Textes résumés depuis les études de cas envoyées par Martin le 28/10. -->
   <section class="etudes" id="etudes">
     <div class="large">
       <p class="etiquette r"><b>08</b>Études de cas</p>
-      <h2 class="r">Ils ont appliqué la méthode de <em>Marcus</em></h2>
+      <h2 class="r">Ils ont appliqué la méthode de <em>Marcuus</em></h2>
       <p class="intro r">Des élèves de son accompagnement racontent leur parcours, avec le suivi quotidien de ses coachs.</p>
       <div class="carrousel" id="carrousel">
         <article class="carte etude">
@@ -911,7 +994,7 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
         <div class="points" id="points" aria-hidden="true"></div>
         <button type="button" class="fleche" id="suivant" aria-label="Étude de cas suivante"><svg><use href="#i-fleche"/></svg></button>
       </div>
-      <p class="avertissement-resultats">Résultats obtenus par des élèves de l’accompagnement de Marcus, avec le suivi de ses coachs, et non avec la masterclass seule. Ce sont des chiffres d’affaires, pas des bénéfices. Ils ne sont pas représentatifs et ne garantissent aucun résultat.</p>
+      <p class="avertissement-resultats">Résultats obtenus par des élèves de l’accompagnement de Marcuus, avec le suivi de ses coachs, et non avec la masterclass seule. Ce sont des chiffres d’affaires, pas des bénéfices. Ils ne sont pas représentatifs et ne garantissent aucun résultat.</p>
     </div>
   </section>
 
@@ -922,7 +1005,7 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
     <div class="large">
       <p class="etiquette r"><b>09</b>Résultats d’élèves</p>
       <h2 class="r">Leurs boutiques, <em>en chiffres</em></h2>
-      <p class="intro r">Les tableaux de bord Shopify d’élèves de l’accompagnement de Marcus. Touche une capture pour l’agrandir.</p>
+      <p class="intro r">Les tableaux de bord Shopify d’élèves de l’accompagnement de Marcuus. Touche une capture pour l’agrandir.</p>
       <div class="mosaique r">
         <button type="button" class="capture" data-loupe="img/resultat-01.webp" aria-label="Agrandir la capture 1"><img src="img/resultat-01.webp" width="720" height="531" loading="lazy" decoding="async" alt="Tableau de bord Shopify d’un élève"></button>
         <button type="button" class="capture" data-loupe="img/resultat-02.webp" aria-label="Agrandir la capture 2"><img src="img/resultat-02.webp" width="496" height="650" loading="lazy" decoding="async" alt="Tableau de bord Shopify d’un élève"></button>
@@ -932,7 +1015,7 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
         <button type="button" class="capture" data-loupe="img/resultat-06.webp" aria-label="Agrandir la capture 6"><img src="img/resultat-06.webp" width="386" height="416" loading="lazy" decoding="async" alt="Tableau de bord Shopify d’un élève"></button>
         <button type="button" class="capture" data-loupe="img/resultat-07.webp" aria-label="Agrandir la capture 7"><img src="img/resultat-07.webp" width="720" height="701" loading="lazy" decoding="async" alt="Tableau de bord Shopify d’un élève"></button>
       </div>
-      <p class="avertissement-resultats">Résultats obtenus par des élèves de l’accompagnement de Marcus, avec le suivi de ses coachs, et non avec la masterclass seule. Ce sont des chiffres d’affaires, pas des bénéfices. Ils ne sont pas représentatifs et ne garantissent aucun résultat.</p>
+      <p class="avertissement-resultats">Résultats obtenus par des élèves de l’accompagnement de Marcuus, avec le suivi de ses coachs, et non avec la masterclass seule. Ce sont des chiffres d’affaires, pas des bénéfices. Ils ne sont pas représentatifs et ne garantissent aucun résultat.</p>
     </div>
   </section>
 
@@ -949,19 +1032,31 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
         </details>
         <details>
           <summary>Je suis déjà dans KOS 2.0, c’est utile pour moi ?<span class="rond"><svg><use href="#i-plus"/></svg></span></summary>
-          <p>Oui, si tu veux un plan précis pour ce Black Friday. Ça vient en plus de KOS, ça ne remplace rien.</p>
+          <p>Oui. Elle vient en extension, avec une stratégie complémentaire dédiée au Black Friday. Tu pourras l’exploiter encore davantage grâce à ce que tu mets déjà en place dans KOS.</p>
         </details>
         <details>
           <summary>Je débute, c’est pour moi ?<span class="rond"><svg><use href="#i-plus"/></svg></span></summary>
-          <p>La masterclass est faite pour ceux qui ont déjà des bases en e-commerce. Pendant l’appel, l’équipe voit avec toi si c’est adapté à ta situation.</p>
+          <p>Oui. Ça fonctionne peu importe ton niveau en e-commerce : tout est expliqué étape par étape, et ton coach IA répond à tes questions.</p>
         </details>
         <details>
           <summary>Combien ça coûte ?<span class="rond"><svg><use href="#i-plus"/></svg></span></summary>
-          <p>Moins cher qu’un resto, grâce à notre partenariat avec un logiciel IA. L’équipe te donne tous les détails au téléphone.</p>
+          <p>Moins que le prix d’un McDo. C’est possible parce qu’une entreprise spécialisée dans l’IA finance une grosse partie de l’offre, en échange de la découverte de son logiciel, auquel tu as aussi accès. Le détail t’est donné sur WhatsApp.</p>
         </details>
         <details>
           <summary>Comment j’accède à la masterclass ?<span class="rond"><svg><use href="#i-plus"/></svg></span></summary>
-          <p>Tu remplis le formulaire. Un membre de l’équipe t’appelle dans les 10 minutes et t’ouvre tes accès pendant l’appel.</p>
+          <p>Tu remplis le formulaire. Un membre de l’équipe te contacte sur WhatsApp dans les 10 minutes et te donne ton accès.</p>
+        </details>
+        <details>
+          <summary>C’est quoi, le logiciel IA ? Et mon outil ?<span class="rond"><svg><use href="#i-plus"/></svg></span></summary>
+          <p>Le logiciel IA, c’est notre partenaire : il te permet de créer des sites et des outils juste en les décrivant, sans coder. Ton outil, c’est ton cockpit Black Friday : tu le construis avec ce logiciel, étape par étape, et il te sert à préparer ta campagne (ta marge, tes offres, ton planning, tes textes).</p>
+        </details>
+        <details>
+          <summary>C’est quoi, le coach IA ?<span class="rond"><svg><use href="#i-plus"/></svg></span></summary>
+          <p>Un assistant IA sur WhatsApp qui connaît la masterclass et la méthode de Marcuus. Tu lui écris quand tu bloques, il te répond à toute heure, jusqu’au Black Friday. Il est inclus dans l’offre.</p>
+        </details>
+        <details>
+          <summary>Je fais déjà de la pub, c’est utile ?<span class="rond"><svg><use href="#i-plus"/></svg></span></summary>
+          <p>Oui. La stratégie sans budget pub vient renforcer ce que tu mets en place.</p>
         </details>
         <details>
           <summary>Est-ce que je suis sûr de gagner de l’argent ?<span class="rond"><svg><use href="#i-plus"/></svg></span></summary>
@@ -984,8 +1079,8 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
         </span>
         <h2>Le Black Friday 2026 arrive. <em>Prépare-le maintenant.</em></h2>
         <div class="bloc-cta">
-          <button type="button" class="cta" data-open-modal>JE VEUX MON ACCÈS <svg><use href="#i-chevron"/></svg></button>
-          <p class="sous-cta"><span class="point-vert" aria-hidden="true"></span>Un membre de l’équipe t’appelle dans les 10 minutes.</p>
+          <button type="button" class="cta" data-open-modal>ÊTRE CONTACTÉ SUR WHATSAPP <svg><use href="#i-chevron"/></svg></button>
+          <p class="sous-cta"><span class="point-vert" aria-hidden="true"></span>Un membre de l’équipe te contacte sur WhatsApp dans les 10 minutes.</p>
         </div>
       </div>
     </div>
@@ -1031,7 +1126,7 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
   <div class="modal" id="formulaire">
     <button type="button" class="modal-fermer" id="modalFermer" aria-label="Fermer"><svg><use href="#i-croix"/></svg></button>
     <div id="blocFormulaire">
-      <h2 id="modalTitre">Laisse tes infos, on t’appelle dans les <em>10 minutes</em></h2>
+      <h2 id="modalTitre">Laisse tes infos, on te contacte sur WhatsApp dans les <em>10 minutes</em></h2>
       <form id="form" novalidate>
         <div class="deux">
           <div class="champ">
@@ -1048,7 +1143,7 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
           <input type="email" id="email" name="email" autocomplete="email" inputmode="email" maxlength="160" placeholder="ton@email.com" required>
         </div>
         <div class="champ">
-          <label for="phone">Téléphone <span style="font-weight:400;color:var(--gris)">(WhatsApp de préférence)</span></label>
+          <label for="phone">Ton numéro WhatsApp</label>
           <div class="tel">
             <select id="country" name="country" aria-label="Indicatif du pays"></select>
             <input type="tel" id="phone" name="phone" autocomplete="tel-national" inputmode="tel" placeholder="6 12 34 56 78" required>
@@ -1058,7 +1153,7 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
 
         <label class="consent" id="consentBloc">
           <input type="checkbox" id="consent" name="consent" required>
-          <span>J’accepte d’être recontacté par téléphone ou sur WhatsApp au sujet de la masterclass. <a href="#" data-lien="confidentialite" target="_blank" rel="noopener">Politique de confidentialité</a></span>
+          <span>J’accepte d’être contacté sur WhatsApp au sujet de la masterclass. <a href="#" data-lien="confidentialite" target="_blank" rel="noopener">Politique de confidentialité</a></span>
         </label>
 
         <!-- Suivi des sources : remplis au chargement (paramètres de l'adresse, retenus 30 jours) -->
@@ -1076,15 +1171,15 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
         </div>
 
         <p class="erreur" id="erreur" role="alert" hidden></p>
-        <button type="submit" class="cta" id="envoyer">ÊTRE RAPPELÉ <svg><use href="#i-chevron"/></svg></button>
-        <p class="form-rassurance"><span class="point-vert" aria-hidden="true"></span>Un membre de l’équipe t’appelle dans les 10 minutes.</p>
+        <button type="submit" class="cta" id="envoyer">JE VEUX MON ACCÈS <svg><use href="#i-chevron"/></svg></button>
+        <p class="form-rassurance"><span class="point-vert" aria-hidden="true"></span>Un membre de l’équipe te contacte sur WhatsApp dans les 10 minutes.</p>
       </form>
     </div>
 
     <div class="merci" id="blocMerci" hidden tabindex="-1" role="status">
       <span class="rond"><svg><use href="#i-coche"/></svg></span>
-      <h2>C’est envoyé !</h2>
-      <p><strong>Hyper important :</strong> un membre de l’équipe t’appelle dans les 10 minutes (parfois un peu plus), sur ton numéro ou sur WhatsApp. Si tu vois un numéro inconnu, décroche, c’est sûrement nous 😉</p>
+      <h2>C’est noté.</h2>
+      <p>Un membre de l’équipe te contacte sur WhatsApp dans les 10 minutes. <strong>Garde ton téléphone pas loin.</strong></p>
     </div>
   </div>
 </div>
@@ -1483,7 +1578,7 @@ function envoyerLead(lead){
     var bloc = document.getElementById('consentBloc');
     if (!document.getElementById('consent').checked){
       bloc.classList.add('manque');
-      montrer('Coche la case pour qu\'on puisse t\'appeler.');
+      montrer('Coche la case pour qu\'on puisse te contacter sur WhatsApp.');
       return;
     }
     bloc.classList.remove('manque');

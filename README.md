@@ -1,8 +1,8 @@
-# Page de vente — Masterclass Black Friday 2026 (Marcus Lawrence)
+# Page de vente — Masterclass Black Friday 2026 (Marcuus Lawrence)
 
-Page secondaire de Marcus Lawrence : une masterclass tournée pour le Black Friday 2026,
-extension de KOS 2.0. Un seul objectif : le formulaire. Un setter rappelle le lead dans
-les 10 minutes.
+Page secondaire de Marcuus Lawrence : une masterclass tournée pour le Black Friday 2026,
+extension de KOS 2.0. Un seul objectif : le formulaire. Un setter contacte le lead sur
+WhatsApp dans les 10 minutes.
 
 Fichier HTML unique (CSS et JS dans la page, sans build), sur la mécanique de la page
 Mexed (`~/Page de vente Mexed`, non modifiée) : formulaire, indicatifs + E.164, anti-spam,
@@ -10,7 +10,7 @@ suivi des sources, envoi dans la table `leads` de Supabase.
 
 ```
 index.html        la page
-img/              photo de Marcus (provisoire), captures de résultats, miniatures, image de partage
+img/              photo et avatar de Marcuus (provisoires), captures de résultats, miniatures, image de partage
 videos/           études de cas recompressées (H.264, démarrage rapide)
 favicon.svg
 vercel.json       URLs propres, liens courts /nom, noindex
@@ -34,7 +34,7 @@ Bouton « JE VEUX MON ACCÈS »  →  modale du formulaire (la page ne défile p
         ▼
 Table public.leads (schéma du CRM Mexed)  →  setters
         │
-        └──►  dans la modale, le formulaire laisse la place à « C'est envoyé ! »
+        └──►  dans la modale, le formulaire laisse la place à « C'est noté. »
               + Lead (Meta) / SubmitForm (TikTok) si les pixels sont renseignés
 ```
 
@@ -64,7 +64,7 @@ Table public.leads (schéma du CRM Mexed)  →  setters
 | Pied de page | `#191919`, texte blanc |
 
 Le haut de page est un titre texte « MASTERCLASS BLACK FRIDAY 2026 » construit comme le
-logo de Marcus (trait, petit mot, gros mot, pastille corail), sans le logo KOS.
+logo de Marcuus (trait, petit mot, gros mot, pastille corail), sans le logo KOS.
 
 Mobile d'abord (testé à 375 px) ; à partir de 760 px les cartes passent en colonnes,
 et au-delà de 1000 px la barre CTA fixe disparaît. Sur mobile, la barre apparaît après le
