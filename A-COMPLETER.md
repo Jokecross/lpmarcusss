@@ -5,7 +5,7 @@ Pour tout retrouver : `grep -n "À COMPLÉTER\|À FOURNIR" index.html`
 
 | Quoi | Où | État |
 |---|---|---|
-| ID de la VSL | `VSL.vimeo` (ou `VSL.youtube`, ou `VSL.fichier` pour un MP4) + `VSL.format` (`'16 / 9'` ou `'9 / 16'`) | à venir |
+| VSL | Fichier `videos/vsl-black-friday.mp4` (balise `<video id="vslVideo">`), démarre sans le son, bouton « activer le son » | fait le 08/11 |
 | ~~Base des leads~~ | `SUPABASE_URL` + `SUPABASE_ANON_KEY` | fait le 29/10 : projet `vptuzxbjyiajntoctibx`, partagé avec `~/CRM Marcuus` et `~/Espace Membre Marcuus` |
 | ~~Client / offre dans le CRM~~ | — | un projet Supabase propre à Marcuus (29/10) ; les leads du formulaire vont à l'équipe Base44 (`starter`) |
 | Colonnes de suivi | `COLONNES_SUIVI = true` une fois les colonnes `ref`, `utm_*` créées | sinon `ref` → `source`, UTM → `page_url` |
