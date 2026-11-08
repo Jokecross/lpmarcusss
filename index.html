@@ -241,6 +241,9 @@ h1 u, h2 u{ text-decoration-thickness:2px; text-underline-offset:6px; }
 .vsl-legende{ position:absolute; z-index:1; left:0; right:0; bottom:16px; font-size:14px; font-weight:500; }
 .vsl iframe, .vsl video{ position:absolute; inset:0; width:100%; height:100%; border:0; background:#000; }
 .vsl video{ object-fit:cover; }
+/* Aucune commande : ni pause, ni avance, ni menu */
+.vsl video::-webkit-media-controls{ display:none !important; }
+.vsl video::-webkit-media-controls-enclosure{ display:none !important; }
 /* Tant que le son est coupé : toute la vidéo est un bouton « activer le son » */
 .vsl-muet{
   position:absolute; inset:0; z-index:2; width:100%; padding:0 12px; border:0; margin:0; cursor:pointer; font:inherit;
@@ -707,7 +710,7 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
           <div class="vsl" id="vsl" style="--ratio:9 / 16">
             <video id="vslVideo" src="videos/vsl-black-friday.mp4" poster="img/vsl-affiche.webp"
                    muted autoplay loop playsinline webkit-playsinline preload="auto"
-                   disablepictureinpicture disableremoteplayback controlslist="nodownload noplaybackrate noremoteplayback"
+                   disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noplaybackrate noremoteplayback"
                    aria-label="Vidéo de présentation de la Masterclass Black Friday"></video>
             <button type="button" class="vsl-muet" id="vslMuet" aria-label="Activer le son de la vidéo">
               <span class="vsl-muet-carte">
@@ -1430,10 +1433,11 @@ function envoyerLead(lead){
 
   /* ---------------- La VSL ----------------
      Démarre seule, sans le son, en boucle. Un appui : la vidéo repart du
-     début avec le son, une seule fois, avec les commandes habituelles. */
+     début avec le son, une seule fois. Aucune commande : pas de pause, pas
+     d'avance ; si le navigateur tente l'un ou l'autre, on reprend la main. */
   var video = document.getElementById('vslVideo');
   var muet = document.getElementById('vslMuet');
-  var sonActif = false;
+  var sonActif = false, vu = 0;
   video.muted = true; video.defaultMuted = true;
   function lire(){
     var p = video.play();
@@ -1441,16 +1445,19 @@ function envoyerLead(lead){
     if (p && p.catch) p.catch(function(){ if (!sonActif) document.getElementById('vslMuetTitre').textContent = 'La vidéo est prête'; });
   }
   lire();
-  // Sans le son, rien ne doit l'arrêter : on relance si le navigateur la met en pause.
-  video.addEventListener('pause', function(){ if (!sonActif && !document.hidden) lire(); });
-  document.addEventListener('visibilitychange', function(){ if (!sonActif && !document.hidden) lire(); });
+  // Pas de pause : on relance (sauf onglet caché, où le navigateur suspend tout).
+  video.addEventListener('pause', function(){ if (!video.ended && !document.hidden) lire(); });
+  document.addEventListener('visibilitychange', function(){ if (!document.hidden && !video.ended) lire(); });
+  // Pas d'avance : on ne peut pas aller plus loin que ce qui a déjà été vu.
+  video.addEventListener('timeupdate', function(){ if (!video.seeking && video.currentTime > vu) vu = video.currentTime; });
+  video.addEventListener('seeking', function(){ if (video.currentTime > vu + 1) video.currentTime = vu; });
+  video.addEventListener('ratechange', function(){ if (video.playbackRate !== 1) video.playbackRate = 1; });
   video.addEventListener('contextmenu', function(e){ e.preventDefault(); });
   muet.addEventListener('click', function(){
-    sonActif = true;
+    sonActif = true; vu = 0;
     video.loop = false;
     video.currentTime = 0;
     video.muted = false; video.volume = 1;
-    video.controls = true;
     lire();
     muet.hidden = true;
     suivre('VSL son activé');
