@@ -1297,6 +1297,18 @@ var PAYS = [
   ['AM','Arménie','374'],      ['GE','Géorgie','995'],      ['CY','Chypre','357']
 ];
 
+/* Le parcours automatique des numéros africains (comme chez Mexed) : le
+   lead ne part pas dans les Leads du jour, il est enregistré dans le
+   vivier « auto » et suit la page activer.html (abonnement Base44 avec
+   notre lien, puis dépôt de la facture, vérifiée dans le CRM, onglet
+   Automatique). false = coupé : tout le monde part chez les setters. */
+var PARCOURS_AUTO = false;   // [À ACTIVER] quand le lien Base44 est dans activer.html
+
+/* Les 54 pays d'Afrique. La Réunion et Mayotte (+262) sont des
+   départements français : elles n'y sont pas. */
+var AFRIQUE = ('DZ AO BJ BW BF BI CV CM CF TD KM CG CD CI DJ EG GQ ER SZ ET GA GM GH GN GW ' +
+               'KE LS LR LY MG MW ML MR MU MA MZ NA NE NG RW ST SN SC SL SO ZA SS SD TZ TG TN UG ZM ZW').split(' ');
+
 /* Le 0 du début se retire (06… → +33 6…), sauf là où il fait partie du
    numéro : en Côte d'Ivoire (07 01 02 03 04 → +225 07 01 02 03 04) et en
    Italie pour les fixes. */
@@ -1307,7 +1319,31 @@ function versE164(indicatif, brut){
   return chiffres ? '+' + indicatif + chiffres : '';
 }
 
-function envoyerLead(lead){
+/* Le lead du parcours est créé avec son identifiant et un jeton secret,
+   que seul ce navigateur connaît : la page « Active ton accès » s'en sert
+   pour déposer la facture sur ce lead, et sur lui seul. */
+function uuid(){
+  if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c){
+    var r = crypto.getRandomValues(new Uint8Array(1))[0] % 16;
+    return (c === 'x' ? r : (r & 3 | 8)).toString(16);
+  });
+}
+function envoyerAuto(lead){
+  var id = uuid(), jeton = uuid();
+  return envoyerLead(lead, { id: id, vivier: 'auto', auto_jeton: jeton }).then(function(){
+    try {
+      localStorage.setItem('marcuus-parcours-auto', JSON.stringify({
+        lead: id, jeton: jeton, etape: 0, prenom: lead.firstName, email: lead.email
+      }));
+    } catch(e){}
+    // En local, le petit serveur ne connaît pas les adresses sans .html.
+    var page = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) ? 'activer.html' : '/activer';
+    location.href = page + '?l=' + id + '&t=' + jeton;
+  });
+}
+
+function envoyerLead(lead, enPlus){
   if (!SUPABASE_URL || !SUPABASE_ANON_KEY){
     console.error('Supabase non configuré : renseigner SUPABASE_URL et SUPABASE_ANON_KEY.');
     return Promise.reject(new Error('config'));
@@ -1321,6 +1357,7 @@ function envoyerLead(lead){
     source:     lead.source
   };
   if (COLONNES_SUIVI) for (var k in lead.suivi) corps[k] = lead.suivi[k] || null;
+  for (var c in (enPlus || {})) corps[c] = enPlus[c];
   return fetch(SUPABASE_URL + '/rest/v1/leads', {
     method: 'POST',
     headers: {
@@ -1572,6 +1609,7 @@ function envoyerLead(lead){
     o.value = p[2];
     o.textContent = p[0] + ' +' + p[2];
     o.setAttribute('data-pays', p[1]);
+    o.setAttribute('data-iso', p[0]);
     sel.appendChild(o);
   });
   sel.value = '33';
@@ -1632,6 +1670,23 @@ function envoyerLead(lead){
 
     bouton.setAttribute('aria-busy', 'true');
     bouton.textContent = 'Envoi en cours…';
+
+    /* Numéro africain : pas de Leads du jour. Le lead part dans le vivier
+       « auto » et la personne arrive sur la page « Active ton accès ». */
+    var o = sel.options[sel.selectedIndex];
+    if (PARCOURS_AUTO && !leurre && o && AFRIQUE.indexOf(o.getAttribute('data-iso')) !== -1){
+      envoyerAuto(lead)
+        .then(function(){
+          suivre('Parcours auto · lancé');
+          conversion();
+        })
+        .catch(function(){
+          montrer('L\'envoi a échoué. Réessaie dans un instant.');
+          bouton.removeAttribute('aria-busy');
+          bouton.innerHTML = libelleBouton;
+        });
+      return;
+    }
 
     // Champ leurre rempli = robot : on simule un succès sans rien enregistrer.
     (leurre ? Promise.resolve() : envoyerLead(lead))

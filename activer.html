@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Active ton accès — Masterclass Black Friday 2026</title>
+<meta name="description" content="Active ton accès à la Masterclass Black Friday 2026, étape par étape.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FFFBF8">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+<script>
+/* ============================================================
+   RÉGLAGES DU PARCOURS AUTOMATIQUE
+   ------------------------------------------------------------
+   Tout ce qui change d'un lancement à l'autre est ici.
+   Un champ vide affiche un emplacement [À COMPLÉTER] à sa place.
+   ============================================================ */
+
+// Le lien d'affiliation Base44 de ce parcours (Marcuus). `sharedid=auto`
+// sépare ces ventes de celles des setters dans le tableau de bord Base44.
+// Vide = page affichée avec un emplacement [À COMPLÉTER].
+var LIEN_BASE44 = '';   // [À COMPLÉTER] lien d'affiliation Base44 de Marcuus
+
+// Les deux abonnements Base44 et ce qu'ils ouvrent dans l'espace membre.
+// Repris du jour 0 du workshop : mensuel = plan Builder, annuel = plan
+// Starter. Prix relevés sur Base44 le 19/10. [À VALIDER] par Martin.
+var ABONNEMENTS = [
+  {
+    nom: 'Starter, à l\'année',
+    prix: '192 $ / an',
+    detail: 'soit 16 $ par mois · 100 crédits de messages',
+    acces: 'la formule annuelle : le workshop de 7 jours, la vidéo de la masterclass et les 21 Lives Ibrahim.',
+    pourquoi: 'Le moins cher sur l\'année, et le seul qui ouvre les 21 Lives Ibrahim.',
+    conseille: true
+  },
+  {
+    nom: 'Builder, au mois',
+    prix: '50 $ / mois',
+    detail: 'sans engagement · 250 crédits de messages',
+    acces: 'la formule mensuelle : le workshop de 7 jours et la vidéo de la masterclass.',
+    conseille: false
+  }
+];
+
+// Le délai de vérification de la facture, tel qu'on le promet.
+var DELAI_VERIFICATION = 'dans l\'heure';
+
+// Les captures, dans img/auto/. Une capture vide n'apparaît pas en ligne ;
+// en local, un cadre [CAPTURE À VENIR] montre où elle ira. Plusieurs
+// images = côte à côte.
+var CAPTURES = {
+  'base44-accueil':'img/auto/base44-accueil.webp',
+  'base44-compte': 'img/auto/base44-compte.webp',
+  'base44-menu':   'img/auto/base44-menu.webp',
+  'base44-upgrade':'img/auto/base44-upgrade.webp',
+  'abonnements':   ['img/auto/base44-starter.webp', 'img/auto/base44-builder.webp'],
+  'cycle':         ['img/auto/base44-cycle-starter.webp', 'img/auto/base44-cycle-builder.webp'],
+  'facture-mail':  'img/auto/base44-facture-mail.webp'   // identifiant du client flouté
+};
+
+// La base de Marcuus (clé anon : publique par conception, la RLS protège).
+var SUPABASE_URL      = 'https://vptuzxbjyiajntoctibx.supabase.co';
+var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZwdHV6eGJqeWlham50b2N0aWJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTMzMTI2MjgsImV4cCI6MjEwODg4ODYyOH0.CEdLV5K7xZZ4odGF_Ozj7rrjNLRIyVgucRkerJoq6FU';
+</script>
+
+<style>
+:root{
+  --bg:#FFFBF8; --card:#FFFFFF; --card-2:#FAEFE9;
+  --border:rgba(74,63,59,.12); --border-2:#F2D5C8;
+  --text:#0E0B0A; --text-2:#3F3734; --text-3:#7A706B;
+  --silver:#E86C46; --silver-lo:#E86C46; --red:#D93A2B; --green:#2FB06C; --amber:#C77A1A;
+  --corail:#E86C46; --vert:linear-gradient(100deg, #1EC01E 0%, #0E9C0E 100%);
+  --titre:'Lora', Georgia, serif;
+  --font:'Roboto', ui-sans-serif, system-ui, sans-serif;
+}
+*{ box-sizing:border-box; margin:0; padding:0; }
+[hidden]{ display:none !important; }
+html{ -webkit-text-size-adjust:100%; }
+body{
+  background:var(--bg); color:var(--text-2); font-family:var(--font); font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; min-height:100vh;
+  background-image:radial-gradient(ellipse 120% 520px at 50% -140px, rgba(232,108,70,.10), transparent 70%);
+}
+button{ font:inherit; color:inherit; }
+strong, b{ color:var(--text); font-weight:600; }
+a{ color:var(--silver); }
+
+.wrap{ max-width:620px; margin:0 auto; padding:0 18px; }
+
+/* ---------- En-tête et progression ---------- */
+.haut{ position:sticky; top:0; z-index:20; background:rgba(255,251,248,.9); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+.haut .wrap{ display:flex; align-items:center; gap:14px; padding-top:13px; padding-bottom:13px; }
+.marque{ font-family:var(--titre); font-weight:700; font-size:17px; color:var(--text); letter-spacing:-.01em; }
+.marque span{ color:var(--corail); font-weight:700; }
+.compteur{ margin-left:auto; font-size:12.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--text-3); }
+.barre{ height:3px; background:var(--border); }
+.barre i{ display:block; height:100%; width:0; background:var(--corail); transition:width .4s ease; }
+
+main.wrap{ padding-top:30px; padding-bottom:70px; }
+.ecran[hidden]{ display:none; }
+.ecran{ animation:entree .35s ease; }
+@keyframes entree{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:none; } }
+@media (prefers-reduced-motion: reduce){ .ecran{ animation:none; } .barre i{ transition:none; } }
+
+.pastille{
+  display:inline-flex; align-items:center; gap:8px; padding:6px 12px;
+  border:1px solid #F5BCAC; background:#FEECE7; border-radius:999px;
+  font:700 11.5px/1 var(--font); letter-spacing:.09em; text-transform:uppercase; color:var(--silver);
+}
+h1, h2, h3{ font-family:var(--titre); color:var(--text); letter-spacing:-.015em; }
+h1{ margin-top:14px; font-size:clamp(29px, 8vw, 40px); line-height:1.1; font-weight:700; }
+h2{ font-size:clamp(25px, 6.6vw, 32px); line-height:1.12; font-weight:700; margin-top:14px; }
+h3{ font-size:17.5px; line-height:1.3; font-weight:700; }
+.chapo{ margin-top:12px; font-size:17px; color:var(--text-2); }
+
+.carte{ margin-top:16px; background:var(--card); border:1px solid var(--border); border-radius:22px; padding:20px; box-shadow:0 14px 34px -24px rgba(232,108,70,.45); }
+.carte > h3 + *{ margin-top:8px; }
+.carte p + p{ margin-top:8px; }
+
+.liste{ list-style:none; margin-top:12px; display:grid; gap:10px; }
+.liste li{ display:flex; gap:11px; align-items:flex-start; }
+.liste li::before{
+  content:''; flex:none; width:18px; height:18px; margin-top:3px; border-radius:50%;
+  background:#D7F4E5 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232FB06C' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/11px no-repeat;
+}
+
+/* Le chemin : les étapes à venir, en un coup d'œil */
+.chemin{ list-style:none; margin-top:14px; counter-reset:c; display:grid; gap:2px; }
+.chemin li{ counter-increment:c; display:flex; gap:12px; align-items:center; padding:9px 0; border-bottom:1px solid var(--border); color:var(--text); font-weight:500; }
+.chemin li:last-child{ border-bottom:0; }
+.chemin li::before{
+  content:counter(c); flex:none; display:grid; place-items:center; width:28px; height:28px; border-radius:50%;
+  border:1.5px solid #F5BCAC; font:700 12.5px/1 var(--titre); color:var(--corail);
+}
+
+/* Les consignes numérotées d'une étape */
+.consignes{ list-style:none; margin-top:16px; counter-reset:n; display:grid; gap:14px; }
+.consignes > li{ counter-increment:n; position:relative; padding-left:42px; color:var(--text); }
+.consignes > li::before{
+  content:counter(n); position:absolute; left:0; top:-2px; display:grid; place-items:center;
+  width:29px; height:29px; border-radius:50%; background:var(--corail); color:#fff;
+  font:700 13px/1 var(--titre);
+}
+.consignes small{ display:block; margin-top:3px; font-size:14px; color:var(--text-2); }
+
+/* Les encadrés */
+.note{ margin-top:16px; display:flex; gap:12px; padding:14px 16px; border-radius:16px; font-size:15px; }
+.note b{ display:block; }
+.note .ic{ flex:none; width:22px; height:22px; margin-top:1px; }
+.note-alerte{ background:#FFF4E2; border:1px solid #F3C98A; color:#6B4510; }
+.note-alerte b{ color:#4A2E06; }
+.note-info{ background:var(--card-2); border:1px solid var(--border-2); }
+.note-ok{ background:#D7F4E5; border:1px solid #A8E3C4; color:#1D6B45; }
+.note-ok b{ color:#124D30; }
+.note-erreur{ background:#FDECEA; border:1px solid #F3B4AD; color:#A0261B; }
+
+/* Les captures */
+.capture{ margin-top:16px; }
+.capture img{ display:block; width:100%; max-width:340px; margin:0 auto; border-radius:22px; border:1px solid var(--border-2); }
+.capture .vide{
+  max-width:340px; margin:0 auto; aspect-ratio:9/16; max-height:420px; border-radius:22px;
+  border:1.5px dashed var(--border-2); background:var(--card-2);
+  display:grid; place-items:center; text-align:center; padding:20px; font-size:13.5px; color:var(--text-3);
+}
+.capture .vide b{ display:block; color:var(--red); font-size:12px; letter-spacing:.06em; margin-bottom:6px; }
+.capture figcaption{ margin-top:8px; text-align:center; font-size:13.5px; color:var(--text-3); }
+.capture .images{ display:grid; gap:10px; justify-items:center; }
+.capture .images.duo{ grid-template-columns:1fr 1fr; }
+.capture .images button{ display:block; width:100%; max-width:340px; padding:0; border:0; background:none; cursor:zoom-in; }
+.capture .images.duo img{ border-radius:16px; }
+.devise{ margin-top:10px; font-size:13.5px; color:var(--text-3); }
+.abo .detail{ margin-top:2px; font-size:13.5px; color:var(--text-3); }
+.loupe{ position:fixed; inset:0; z-index:50; background:rgba(14,11,10,.94); display:grid; place-items:center; padding:16px; cursor:zoom-out; }
+.loupe img{ max-width:100%; max-height:calc(100vh - 70px); border-radius:18px; }
+.loupe p{ position:absolute; bottom:max(16px, env(safe-area-inset-bottom)); left:0; right:0; text-align:center; font-size:14px; color:#E8DED8; }
+
+/* Le lien à copier */
+.lien{ margin-top:16px; padding:14px; border-radius:16px; background:var(--card-2); border:1px solid var(--border-2); }
+.lien code{ display:block; font:500 13.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color:var(--text); word-break:break-all; user-select:all; -webkit-user-select:all; }
+
+/* Les navigateurs */
+.onglets{ margin-top:16px; display:flex; flex-wrap:wrap; gap:8px; }
+.onglets button{
+  padding:9px 14px; border-radius:999px; border:1px solid var(--border-2); background:transparent; cursor:pointer;
+  font-size:14px; font-weight:600; color:var(--text-2);
+}
+.onglets button[aria-pressed="true"]{ background:var(--corail); color:#fff; border-color:transparent; }
+.navigateur[hidden]{ display:none; }
+
+/* Les abonnements */
+.abos{ margin-top:16px; display:grid; gap:12px; }
+.abo{ position:relative; padding:20px; border-radius:20px; background:var(--card); border:1px solid var(--border-2); }
+.abo.conseille{ border:1.5px solid var(--corail); box-shadow:0 18px 40px -22px rgba(232,108,70,.55); }
+.abo .ruban{ position:absolute; top:-11px; left:18px; padding:4px 10px; border-radius:999px; background:var(--corail); color:#fff; font:700 11px/1.2 var(--font); letter-spacing:.06em; text-transform:uppercase; }
+.abo .prix{ margin-top:4px; font:700 26px/1.1 var(--titre); color:var(--text); }
+.abo p{ margin-top:8px; font-size:15px; }
+.abo .pourquoi{ color:var(--text); }
+
+/* Le dépôt de la facture */
+.depot{
+  margin-top:16px; display:block; padding:28px 18px; border-radius:20px; text-align:center; cursor:pointer;
+  border:1.5px dashed #F5BCAC; background:var(--card); transition:border-color .2s, background .2s;
+}
+.depot:hover, .depot.survol{ border-color:var(--silver); background:var(--card-2); }
+.depot .ic{ width:34px; height:34px; margin:0 auto 8px; color:var(--silver); }
+.depot b{ display:block; font-size:16.5px; }
+.depot span{ display:block; margin-top:4px; font-size:13.5px; color:var(--text-3); }
+.fichier{ margin-top:12px; display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:14px; background:var(--card-2); border:1px solid var(--border-2); font-size:14.5px; color:var(--text); }
+.fichier span{ flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.fichier button{ border:0; background:none; color:var(--text-3); cursor:pointer; font-size:13.5px; text-decoration:underline; }
+.jauge{ margin-top:12px; height:6px; border-radius:99px; background:var(--border); overflow:hidden; }
+.jauge i{ display:block; height:100%; width:0; background:var(--corail); transition:width .2s; }
+
+/* Les boutons */
+.actions{ margin-top:26px; display:grid; gap:10px; }
+.cta{
+  display:flex; align-items:center; justify-content:center; gap:10px; width:100%; min-height:56px; padding:0 22px;
+  background:var(--vert); color:#fff; border:0; border-radius:16px; cursor:pointer; text-decoration:none;
+  font:700 16px/1.2 var(--font); text-align:center; text-transform:uppercase; letter-spacing:.02em;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.3), 0 12px 26px -12px rgba(30,192,30,.6);
+  transition:transform .15s ease, opacity .2s;
+}
+.cta:active{ transform:translateY(1px); }
+.cta:disabled{ opacity:.4; cursor:not-allowed; box-shadow:none; }
+.cta svg{ width:18px; height:18px; flex:none; }
+.second{
+  width:100%; min-height:50px; border-radius:16px; border:1px solid var(--border-2); background:transparent;
+  cursor:pointer; font-size:15px; font-weight:600; color:var(--text);
+}
+.retour{ border:0; background:none; cursor:pointer; padding:6px 0; font-size:14.5px; font-weight:600; color:var(--text-3); }
+.retour:hover{ color:var(--text); }
+.cta:focus-visible, .second:focus-visible, .retour:focus-visible, .onglets button:focus-visible, .depot:focus-within{ outline:2px solid var(--silver); outline-offset:3px; }
+
+/* L'aide */
+.aide{ margin-top:34px; }
+.aide > h3{ font-size:15px; letter-spacing:.06em; text-transform:uppercase; color:var(--text-3); font-family:var(--font); font-weight:700; }
+.aide details{ margin-top:10px; border:1px solid var(--border); border-radius:16px; background:var(--card); }
+.aide summary{ list-style:none; cursor:pointer; padding:14px 16px; font-weight:600; color:var(--text); display:flex; gap:10px; }
+.aide summary::-webkit-details-marker{ display:none; }
+.aide summary::after{ content:'+'; margin-left:auto; color:var(--silver); font-weight:700; }
+.aide details[open] summary::after{ content:'−'; }
+.aide details p{ padding:0 16px 14px; font-size:15px; }
+
+mark.todo{ background:#FDECEA; color:var(--red); border-radius:4px; padding:1px 5px; font-size:.92em; }
+
+.fin{ text-align:center; }
+.fin .rond{ width:74px; height:74px; margin:6px auto 0; border-radius:50%; display:grid; place-items:center; background:#D7F4E5; border:1.5px solid #A8E3C4; }
+.fin .rond svg{ width:34px; height:34px; color:var(--green); }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-fleche" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-copier" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></symbol>
+  <symbol id="i-valide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-alerte" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9.5 17h-19z"/><path d="M12 10v4.5M12 17.5v.01"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.5v.01"/></symbol>
+  <symbol id="i-depot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></symbol>
+</svg>
+
+<header class="haut">
+  <div class="wrap">
+    <span class="marque">Masterclass <span>Black Friday 2026</span></span>
+    <span class="compteur" id="compteur">Avant de commencer</span>
+  </div>
+  <div class="barre"><i id="barre"></i></div>
+</header>
+
+<main class="wrap">
+
+  <!-- Hors parcours : la page ouverte sans demande d'accès -->
+  <section class="ecran" data-ecran="perdu" hidden>
+    <span class="pastille">Active ton accès</span>
+    <h1>Commence par ta demande d'accès</h1>
+    <p class="chapo">Cette page se suit après avoir rempli le formulaire de la page de la Masterclass Black Friday 2026. Remplis‑le, et tu reviens ici automatiquement.</p>
+    <div class="actions"><a class="cta" href="/">Aller au formulaire <svg><use href="#i-fleche"/></svg></a></div>
+  </section>
+
+  <!-- 0. Avant de commencer -->
+  <section class="ecran" data-ecran="0" hidden>
+    <span class="pastille">Ta demande est enregistrée</span>
+    <h1>Active ton accès toi‑même, <span id="prenom0">étape par étape</span></h1>
+    <p class="chapo">Pas besoin d'attendre un appel : cette page te guide du début à la fin. Lis bien chaque étape, et ne passe à la suivante qu'une fois la précédente faite.</p>
+
+    <div class="carte">
+      <h3>Ce que tu obtiens</h3>
+      <ul class="liste">
+        <li><span><strong>Le workshop de 7 jours</strong> : chaque jour, un prompt à coller dans Base44. Jour après jour, tu construis ton propre outil, le Cockpit Black Friday : ton shop, tes marges, ton produit star, tes offres, ton planning, tes textes et ton coach IA.</span></li>
+        <li><span><strong>La vidéo de la masterclass</strong> Black Friday de Marcuus.</span></li>
+        <li><span><strong>Les 21 Lives Ibrahim</strong>, avec l'abonnement à l'année.</span></li>
+      </ul>
+    </div>
+
+    <div class="carte">
+      <h3>Pourquoi tu paies, et combien</h3>
+      <p>Ton accès à la masterclass est offert. Ce que tu paies, c'est ton <strong>abonnement Base44</strong> : le logiciel dans lequel tu construis ton Cockpit Black Friday pendant les 7 jours. Sans lui, le workshop ne peut pas se faire.</p>
+      <p>Deux abonnements au choix : <strong>Starter, à l'année</strong> (192 $ par an), ou <strong>Builder, au mois</strong> (50 $ par mois). Tout est détaillé à l'étape 4.</p>
+      <p>Tu le prends avec <strong>notre lien</strong> : c'est lui qui relie ton abonnement à ton accès, et qui nous permet de te l'ouvrir.</p>
+    </div>
+
+    <div class="carte">
+      <h3>Ce que tu vas faire</h3>
+      <ol class="chemin">
+        <li>Copier ton lien</li>
+        <li>Ouvrir une fenêtre de navigation privée</li>
+        <li>Créer ton compte Base44</li>
+        <li>Choisir ton abonnement</li>
+        <li>Payer</li>
+        <li>Déposer ta facture ici</li>
+      </ol>
+    </div>
+
+    <div class="note note-info">
+      <svg class="ic"><use href="#i-info"/></svg>
+      <span>Garde cette page ouverte jusqu'à la fin. Si tu la fermes, rouvre‑la depuis le même téléphone : tu reprendras où tu t'étais arrêté.</span>
+    </div>
+
+    <div class="actions">
+      <button class="cta" data-suivant>Je commence <svg><use href="#i-fleche"/></svg></button>
+    </div>
+  </section>
+
+  <!-- 1. Copier le lien -->
+  <section class="ecran" data-ecran="1" hidden>
+    <span class="pastille">Étape 1 sur 6</span>
+    <h2>Copie ton lien</h2>
+    <p class="chapo">C'est ce lien qui relie ton abonnement Base44 à ton accès à la masterclass. Sans lui, on ne peut pas t'ouvrir ton espace.</p>
+
+    <div class="lien"><code id="lienTexte"></code></div>
+    <div class="actions" style="margin-top:12px">
+      <button class="cta" id="copier"><svg><use href="#i-copier"/></svg> <span>Copier le lien</span></button>
+    </div>
+
+    <div class="note note-alerte">
+      <svg class="ic"><use href="#i-alerte"/></svg>
+      <span><b>Ne clique pas sur le lien ici.</b> Copie‑le seulement : tu vas le coller dans une fenêtre privée à l'étape suivante.</span>
+    </div>
+
+    <div class="actions">
+      <button class="cta" data-suivant id="suivant1" disabled>J'ai copié le lien <svg><use href="#i-fleche"/></svg></button>
+      <button class="retour" data-precedent>← Retour</button>
+    </div>
+  </section>
+
+  <!-- 2. La navigation privée -->
+  <section class="ecran" data-ecran="2" hidden>
+    <span class="pastille">Étape 2 sur 6</span>
+    <h2>Ouvre une fenêtre de navigation privée</h2>
+    <p class="chapo">Une fenêtre privée part de zéro : aucun ancien compte, aucun ancien lien ne vient se mettre entre toi et ton accès. C'est l'étape la plus importante.</p>
+
+    <div class="note note-alerte" id="intra" hidden>
+      <svg class="ic"><use href="#i-alerte"/></svg>
+      <span><b>Tu lis cette page dans <span id="intraNom">une application</span>.</b> La fenêtre privée s'ouvre dans l'application de ton navigateur (Safari, Chrome…), pas ici. Garde cette page ouverte : tu reviendras ici pour la suite.</span>
+    </div>
+
+    <p style="margin-top:18px;color:var(--text);font-weight:600">Quel navigateur utilises‑tu&nbsp;?</p>
+    <div class="onglets" role="group" aria-label="Ton navigateur">
+      <button data-nav="safari">Safari (iPhone)</button>
+      <button data-nav="chrome">Chrome</button>
+      <button data-nav="samsung">Samsung Internet</button>
+      <button data-nav="edge">Edge</button>
+    </div>
+
+    <div class="navigateur" data-pour="safari" hidden>
+      <ol class="consignes">
+        <li>Ouvre l'application <strong>Safari</strong>.</li>
+        <li>Appuie sur l'icône des onglets <small>Les deux carrés, en bas à droite.</small></li>
+        <li>Balaie jusqu'à <strong>« Privée »</strong>, ou appuie dessus.</li>
+        <li>Appuie sur <strong>« + »</strong> : un onglet privé s'ouvre. <small>La barre d'adresse devient sombre.</small></li>
+      </ol>
+    </div>
+    <div class="navigateur" data-pour="chrome" hidden>
+      <ol class="consignes">
+        <li>Ouvre l'application <strong>Chrome</strong>.</li>
+        <li>Appuie sur les trois points <small>En haut à droite sur Android, en bas à droite sur iPhone.</small></li>
+        <li>Appuie sur <strong>« Nouvel onglet de navigation privée »</strong>. <small>La page devient sombre, avec un chapeau et des lunettes.</small></li>
+      </ol>
+    </div>
+    <div class="navigateur" data-pour="samsung" hidden>
+      <ol class="consignes">
+        <li>Ouvre l'application <strong>Samsung Internet</strong>.</li>
+        <li>Appuie sur l'icône des onglets, en bas.</li>
+        <li>Appuie sur <strong>« Activer le mode Secret »</strong>.</li>
+        <li>Appuie sur <strong>« + »</strong> pour ouvrir un onglet secret.</li>
+      </ol>
+    </div>
+    <div class="navigateur" data-pour="edge" hidden>
+      <ol class="consignes">
+        <li>Ouvre l'application <strong>Edge</strong>.</li>
+        <li>Appuie sur l'icône des onglets, en bas.</li>
+        <li>Appuie sur <strong>« InPrivate »</strong>.</li>
+        <li>Appuie sur <strong>« + »</strong> pour ouvrir un onglet InPrivate.</li>
+      </ol>
+    </div>
+
+    <div class="actions">
+      <button class="cta" data-suivant>Ma fenêtre privée est ouverte <svg><use href="#i-fleche"/></svg></button>
+      <button class="retour" data-precedent>← Retour</button>
+    </div>
+  </section>
+
+  <!-- 3. Le compte Base44 -->
+  <section class="ecran" data-ecran="3" hidden>
+    <span class="pastille">Étape 3 sur 6</span>
+    <h2>Crée ton compte Base44</h2>
+    <p class="chapo">Tout se passe dans ta fenêtre privée. Base44 est en anglais : on te traduit chaque bouton.</p>
+
+    <ol class="consignes">
+      <li>Appuie sur la <strong>barre d'adresse</strong>, en haut ou en bas de ta fenêtre privée.</li>
+      <li>Appuie longuement, puis sur <strong>« Coller »</strong>. Appuie ensuite sur <strong>« Aller »</strong> sur ton clavier.</li>
+    </ol>
+
+    <ol class="consignes" style="counter-reset:n 2">
+      <li>Tu arrives sur l'accueil de Base44, avec le titre « Every builder needs a base ». Appuie sur la <strong>flèche orange</strong>, entourée en rose.</li>
+    </ol>
+    <figure class="capture" data-capture="base44-accueil" data-legende="L'accueil de Base44 : appuie sur la flèche orange"></figure>
+
+    <ol class="consignes" style="counter-reset:n 3">
+      <li>
+        La page <strong>« Create your account »</strong> (crée ton compte) s'ouvre. Choisis :
+        <small>« Sign up with Google » ou « Sign up with Apple » pour aller plus vite, ou bien ton e‑mail dans « Email », un mot de passe dans « Password », puis « Sign up ».</small>
+        <small id="mailConseil">Utilise ton adresse e‑mail habituelle : c'est là que tu recevras ta facture.</small>
+      </li>
+    </ol>
+    <figure class="capture" data-capture="base44-compte" data-legende="« Create your account » : crée ton compte"></figure>
+
+    <ol class="consignes" style="counter-reset:n 4">
+      <li>Tu arrives sur une page qui te dit <strong>« Hi [ton prénom]. What will you build next? »</strong>. Ton compte est créé.</li>
+    </ol>
+
+    <div class="note note-alerte">
+      <svg class="ic"><use href="#i-alerte"/></svg>
+      <span><b>Reste dans la fenêtre privée jusqu'au paiement.</b> Si tu la fermes avant, reprends depuis l'étape 1.</span>
+    </div>
+
+    <div class="actions">
+      <button class="cta" data-suivant>Mon compte est créé <svg><use href="#i-fleche"/></svg></button>
+      <button class="retour" data-precedent>← Retour</button>
+    </div>
+  </section>
+
+  <!-- 4. Le choix de l'abonnement -->
+  <section class="ecran" data-ecran="4" hidden>
+    <span class="pastille">Étape 4 sur 6</span>
+    <h2>Choisis ton abonnement</h2>
+    <p class="chapo">D'abord, ce que chaque abonnement t'ouvre chez nous. Ensuite, où le trouver dans Base44.</p>
+
+    <div class="abos" id="abos"></div>
+    <p class="devise">Les prix sont en dollars, comme sur Base44. Selon ton pays, Base44 peut te les afficher et te les facturer dans ta monnaie : par exemple 182 € par an pour Starter.</p>
+
+    <ol class="consignes" style="margin-top:24px">
+      <li>Toujours sur Base44, appuie sur le <strong>menu ☰</strong>, en haut à gauche.</li>
+    </ol>
+    <figure class="capture" data-capture="base44-menu" data-legende="Le menu, en haut à gauche"></figure>
+
+    <ol class="consignes" style="counter-reset:n 1">
+      <li>Tout en bas du menu, appuie sur <strong>« Upgrade your plan »</strong> (passer à un abonnement payant).</li>
+    </ol>
+    <figure class="capture" data-capture="base44-upgrade" data-legende="« Upgrade your plan », tout en bas du menu"></figure>
+
+    <ol class="consignes" style="counter-reset:n 2">
+      <li>
+        La page <strong>« Pick a plan »</strong> affiche les abonnements côte à côte : fais‑les glisser avec ton doigt.
+        <small><strong>Starter</strong> est le premier, <strong>Builder</strong> juste à sa droite (marqué « Most popular »). Appuie sur « Get Starter » ou sur « Get Builder », selon ton choix au‑dessus.</small>
+      </li>
+    </ol>
+    <figure class="capture" data-capture="abonnements" data-legende="À gauche Starter, à droite Builder"></figure>
+
+    <div class="actions">
+      <button class="cta" data-suivant>J'ai choisi mon abonnement <svg><use href="#i-fleche"/></svg></button>
+      <button class="retour" data-precedent>← Retour</button>
+    </div>
+  </section>
+
+  <!-- 5. Le paiement -->
+  <section class="ecran" data-ecran="5" hidden>
+    <span class="pastille">Étape 5 sur 6</span>
+    <h2>Paie ton abonnement</h2>
+    <p class="chapo">Dernière étape dans Base44. Ensuite, tu reviens ici.</p>
+
+    <ol class="consignes">
+      <li>
+        Choisis comment tu paies :
+        <small><strong>Starter</strong> : appuie sur <strong>« Yearly »</strong> (à l'année, 192 $).</small>
+        <small><strong>Builder</strong> : appuie sur <strong>« Monthly »</strong> (au mois, 50 $).</small>
+      </li>
+    </ol>
+    <figure class="capture" data-capture="cycle" data-legende="Le choix du paiement : à gauche Starter, à droite Builder"></figure>
+
+    <ol class="consignes" style="counter-reset:n 1">
+      <li>Appuie sur le bouton noir <strong>« Continue to checkout »</strong> (passer au paiement).</li>
+      <li>Entre ta carte bancaire et valide. <small>Attends l'écran de confirmation avant de fermer la fenêtre privée.</small></li>
+    </ol>
+
+    <div class="note note-ok">
+      <svg class="ic"><use href="#i-valide"/></svg>
+      <span><b>C'est payé ?</b> Base44 t'envoie ta facture par e‑mail dans les minutes qui suivent. Reviens ici pour la déposer.</span>
+    </div>
+
+    <div class="actions">
+      <button class="cta" data-suivant>J'ai payé <svg><use href="#i-fleche"/></svg></button>
+      <button class="retour" data-precedent>← Retour</button>
+    </div>
+  </section>
+
+  <!-- 6. La facture -->
+  <section class="ecran" data-ecran="6" hidden>
+    <span class="pastille">Étape 6 sur 6</span>
+    <h2>Dépose ta facture</h2>
+    <p class="chapo">C'est elle qui nous montre que ton abonnement est pris avec notre lien. Dès qu'elle est vérifiée, on t'ouvre ton espace.</p>
+
+    <ol class="consignes">
+      <li>Ouvre l'e‑mail de Base44 qui contient ta facture. <small>Pas reçu ? Regarde dans tes spams et l'onglet « Promotions ».</small></li>
+    </ol>
+    <figure class="capture" data-capture="facture-mail" data-legende="L'e‑mail de facture de Base44"></figure>
+
+    <ol class="consignes" style="counter-reset:n 1">
+      <li>Télécharge la facture en PDF, ou fais une <strong>capture d'écran</strong> de la facture entière.</li>
+      <li>Dépose‑la juste en dessous.</li>
+    </ol>
+
+    <label class="depot" id="depot">
+      <svg class="ic"><use href="#i-depot"/></svg>
+      <b>Choisir ma facture</b>
+      <span>PDF ou image · 10 Mo maximum</span>
+      <input type="file" id="fichier" accept="application/pdf,image/*" hidden>
+    </label>
+    <div class="fichier" id="fichierChoisi" hidden><span id="fichierNom"></span><button id="fichierRetirer">Changer</button></div>
+    <div class="jauge" id="jauge" hidden><i id="jaugeBarre"></i></div>
+    <div class="note note-erreur" id="erreurDepot" hidden></div>
+
+    <div class="actions">
+      <button class="cta" id="envoyer" disabled>Envoyer ma facture <svg><use href="#i-fleche"/></svg></button>
+      <button class="retour" data-precedent>← Retour</button>
+    </div>
+  </section>
+
+  <!-- 7. C'est envoyé -->
+  <section class="ecran fin" data-ecran="7" hidden>
+    <div class="rond"><svg><use href="#i-valide"/></svg></div>
+    <h2>C'est envoyé<span id="prenomFin"></span>&nbsp;!</h2>
+    <p class="chapo">L'équipe vérifie ta facture et t'envoie ton accès à l'espace membre <span id="delai"></span>.</p>
+
+    <div class="carte" style="text-align:left">
+      <h3>En attendant</h3>
+      <ul class="liste">
+        <li><span>Garde ton compte Base44 : c'est dedans que tu construiras ton Cockpit Black Friday.</span></li>
+        <li><span>Surveille tes e‑mails, et tes spams : c'est là qu'arrivera ton lien d'accès.</span></li>
+        <li><span>Dès que ton espace est ouvert, un guide te montre par où commencer.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- L'aide, sous chaque étape -->
+  <section class="aide" id="aide" hidden>
+    <h3>Besoin d'aide&nbsp;?</h3>
+    <details>
+      <summary>Je ne trouve pas la navigation privée</summary>
+      <p>Choisis ton navigateur à l'étape 2 : chaque navigateur a sa marche à suivre. Si tu utilises un autre navigateur, cherche « privé », « secret » ou « InPrivate » dans son menu.</p>
+    </details>
+    <details>
+      <summary>J'ai déjà un compte Base44</summary>
+      <p>Crée un nouveau compte dans la fenêtre privée, avec une autre adresse e‑mail. Un abonnement pris sur un ancien compte ne peut pas être relié à ton accès.</p>
+    </details>
+    <details>
+      <summary>J'ai fermé la fenêtre privée avant de payer</summary>
+      <p>Pas de problème : reviens à l'étape 1, recopie ton lien, rouvre une fenêtre privée et recommence. Tant que tu n'as pas payé, rien n'est perdu.</p>
+    </details>
+    <details>
+      <summary>Je n'ai pas reçu ma facture</summary>
+      <p>Regarde dans tes spams et l'onglet « Promotions ». Tu peux aussi la retrouver dans ton compte Base44, dans la partie abonnement ou facturation.</p>
+    </details>
+  </section>
+
+</main>
+
+<div class="loupe" id="loupe" hidden role="dialog" aria-label="Capture agrandie">
+  <img alt="">
+  <p>Touche pour fermer</p>
+</div>
+
+<script>
+(function(){
+  /* ---------------- L'état, gardé dans ce navigateur ----------------
+     Le lead arrive avec ?l=<id>&t=<jeton> depuis la page de vente. On le
+     garde : s'il ferme la page, il reprend où il s'était arrêté. */
+  var CLE = 'marcuus-parcours-auto';
+  var etat = {};
+  try { etat = JSON.parse(localStorage.getItem(CLE) || '{}') || {}; } catch(e){ etat = {}; }
+  var q = new URLSearchParams(location.search);
+  if (q.get('l') && q.get('t')){
+    if (etat.lead !== q.get('l')) etat = { lead: q.get('l'), jeton: q.get('t'), etape: 0 };
+    if (q.get('p')) etat.prenom = q.get('p');
+    if (q.get('e')) etat.email = q.get('e');
+    sauver();
+    history.replaceState(null, '', location.pathname);   // le jeton ne reste pas dans l'adresse
+  }
+  function sauver(){ try { localStorage.setItem(CLE, JSON.stringify(etat)); } catch(e){} }
+  function suivre(nom){ if (window.va) window.va('event', { name: nom }); }
+
+  var ecrans  = [].slice.call(document.querySelectorAll('[data-ecran]'));
+  var TOTAL   = 6;
+
+  function montrer(n){
+    ecrans.forEach(function(e){ e.hidden = e.getAttribute('data-ecran') !== String(n); });
+    var c = document.getElementById('compteur');
+    c.textContent = n === 'perdu' ? '' : n === 0 ? 'Avant de commencer' : n > TOTAL ? 'Terminé' : 'Étape ' + n + ' sur ' + TOTAL;
+    document.getElementById('barre').style.width = (n === 'perdu' ? 0 : Math.min(n, TOTAL) / TOTAL * 100) + '%';
+    document.getElementById('aide').hidden = !(n >= 1 && n <= TOTAL);
+    window.scrollTo(0, 0);
+    if (typeof n === 'number'){ etat.etape = n; sauver(); suivre('Parcours auto · écran ' + n); }
+  }
+
+  /* ---------------- Les contenus ---------------- */
+  var prenom = (etat.prenom || '').trim();
+  if (prenom){
+    document.getElementById('prenom0').textContent = prenom + ', étape par étape';
+    document.getElementById('prenomFin').textContent = ', ' + prenom;
+  }
+  if (etat.email){
+    document.getElementById('mailConseil').innerHTML =
+      'Utilise de préférence l\'adresse que tu nous as donnée, <strong></strong> : c\'est là que tu recevras ta facture.';
+    document.querySelector('#mailConseil strong').textContent = etat.email;
+  }
+  if (LIEN_BASE44) document.getElementById('lienTexte').textContent = LIEN_BASE44;
+  else document.getElementById('lienTexte').innerHTML = '<mark class="todo">[À COMPLÉTER : lien Base44]</mark>';
+  document.getElementById('delai').innerHTML = DELAI_VERIFICATION
+    ? DELAI_VERIFICATION.replace(/[<>&]/g, '')
+    : '<mark class="todo">[À COMPLÉTER : délai]</mark>';
+
+  // Les captures : une ou plusieurs images, agrandies d'un appui. Sans
+  // image, rien en ligne ; en local, un cadre montre où elle ira.
+  var LOCAL = /^(localhost|127\.0\.0\.1|\[::1\]|192\.168\.\d+\.\d+)$/.test(location.hostname);
+  document.querySelectorAll('[data-capture]').forEach(function(f){
+    var cle = f.getAttribute('data-capture'), legende = f.getAttribute('data-legende');
+    var src = CAPTURES[cle];
+    var liste = Array.isArray(src) ? src.filter(Boolean) : (src ? [src] : []);
+    if (!liste.length){
+      if (!LOCAL){ f.hidden = true; return; }
+      var v = document.createElement('div');
+      v.className = 'vide';
+      v.innerHTML = '<span><b>CAPTURE À VENIR</b></span>';
+      v.firstChild.appendChild(document.createTextNode(legende));
+      f.appendChild(v);
+      return;
+    }
+    var grille = document.createElement('div');
+    grille.className = 'images' + (liste.length > 1 ? ' duo' : '');
+    liste.forEach(function(u){
+      var bouton = document.createElement('button');
+      bouton.type = 'button';
+      bouton.setAttribute('aria-label', 'Agrandir : ' + legende);
+      var img = document.createElement('img');
+      img.src = u; img.alt = legende; img.loading = 'lazy';
+      bouton.appendChild(img);
+      bouton.addEventListener('click', function(){ agrandir(u, legende); });
+      grille.appendChild(bouton);
+    });
+    f.appendChild(grille);
+    var cap = document.createElement('figcaption');
+    cap.textContent = legende + ' · touche pour agrandir';
+    f.appendChild(cap);
+  });
+
+  var loupe = document.getElementById('loupe');
+  function agrandir(u, legende){
+    loupe.querySelector('img').src = u;
+    loupe.querySelector('img').alt = legende;
+    loupe.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+  function fermerLoupe(){ loupe.hidden = true; document.body.style.overflow = ''; }
+  loupe.addEventListener('click', fermerLoupe);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !loupe.hidden) fermerLoupe(); });
+
+  // Les abonnements.
+  var zone = document.getElementById('abos');
+  ABONNEMENTS.forEach(function(a){
+    var d = document.createElement('div');
+    d.className = 'abo' + (a.conseille ? ' conseille' : '');
+    var todo = function(t){ return '<mark class="todo">[À COMPLÉTER : ' + t + ']</mark>'; };
+    var echap = function(s){ return String(s).replace(/[&<>"]/g, function(c){ return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]; }); };
+    d.innerHTML =
+      (a.conseille ? '<span class="ruban">Le plus avantageux</span>' : '') +
+      '<h3>' + (a.nom ? echap(a.nom) : todo('nom de l\'abonnement')) + '</h3>' +
+      '<p class="prix">' + (a.prix ? echap(a.prix) : todo('prix')) + '</p>' +
+      (a.detail ? '<p class="detail">' + echap(a.detail) + '</p>' : '') +
+      '<p><strong>Ce que tu débloques chez nous :</strong> ' + echap(a.acces) + '</p>' +
+      (a.conseille ? '<p class="pourquoi">' + (a.pourquoi ? echap(a.pourquoi) : todo('pourquoi il est plus avantageux')) + '</p>' : '');
+    zone.appendChild(d);
+  });
+
+  /* ---------------- La navigation ---------------- */
+  document.querySelectorAll('[data-suivant]').forEach(function(b){
+    b.addEventListener('click', function(){ montrer((etat.etape || 0) + 1); });
+  });
+  document.querySelectorAll('[data-precedent]').forEach(function(b){
+    b.addEventListener('click', function(){ montrer(Math.max(0, (etat.etape || 0) - 1)); });
+  });
+
+  /* ---------------- Étape 1 : copier ----------------
+     execCommand d'abord : il passe partout sans demander d'autorisation,
+     là où l'API moderne peut rester bloquée dans les navigateurs intégrés. */
+  var copier = document.getElementById('copier');
+  copier.addEventListener('click', function(){
+    var zoneTexte = document.createElement('textarea');
+    zoneTexte.value = LIEN_BASE44;
+    zoneTexte.setAttribute('readonly', '');
+    zoneTexte.style.position = 'fixed'; zoneTexte.style.left = '-9999px';
+    document.body.appendChild(zoneTexte);
+    zoneTexte.select(); zoneTexte.setSelectionRange(0, 99999);
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch(e){}
+    document.body.removeChild(zoneTexte);
+    if (!ok && navigator.clipboard) navigator.clipboard.writeText(LIEN_BASE44).catch(function(){});
+    copier.querySelector('span').textContent = 'Lien copié ✓';
+    document.getElementById('suivant1').disabled = false;
+    etat.copie = true; sauver();
+    suivre('Parcours auto · lien copié');
+  });
+  if (etat.copie) document.getElementById('suivant1').disabled = false;
+
+  /* ---------------- Étape 2 : le navigateur ---------------- */
+  var ua = navigator.userAgent || '';
+  var intra = /Instagram/i.test(ua) ? 'Instagram'
+            : /TikTok|musical_ly|Bytedance/i.test(ua) ? 'TikTok'
+            : /FBAN|FBAV/i.test(ua) ? 'Facebook'
+            : /Snapchat/i.test(ua) ? 'Snapchat' : '';
+  if (intra){
+    document.getElementById('intra').hidden = false;
+    document.getElementById('intraNom').textContent = intra;
+  }
+  function choisirNavigateur(n){
+    document.querySelectorAll('[data-nav]').forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-nav') === n)); });
+    document.querySelectorAll('[data-pour]').forEach(function(p){ p.hidden = p.getAttribute('data-pour') !== n; });
+    etat.navigateur = n; sauver();
+  }
+  document.querySelectorAll('[data-nav]').forEach(function(b){
+    b.addEventListener('click', function(){ choisirNavigateur(b.getAttribute('data-nav')); });
+  });
+  choisirNavigateur(etat.navigateur ||
+    (/SamsungBrowser/i.test(ua) ? 'samsung'
+     : /EdgA|EdgiOS|Edg\//i.test(ua) ? 'edge'
+     : /CriOS|Chrome/i.test(ua) && !/iPhone|iPad/i.test(ua) ? 'chrome'
+     : /CriOS/i.test(ua) ? 'chrome'
+     : /iPhone|iPad/i.test(ua) ? 'safari' : 'chrome'));
+
+  /* ---------------- Étape 5 : la facture ----------------
+     Le fichier part dans le seau privé « factures-auto », dans le dossier
+     du lead ; la fonction deposer_facture_auto l'enregistre ensuite sur le
+     lead, après avoir vérifié le jeton de ce navigateur. */
+  var champ   = document.getElementById('fichier');
+  var depot   = document.getElementById('depot');
+  var envoyer = document.getElementById('envoyer');
+  var erreur  = document.getElementById('erreurDepot');
+  var choisi  = null;
+
+  function montrerErreur(t){ erreur.textContent = t; erreur.hidden = !t; }
+  function prendre(f){
+    montrerErreur('');
+    if (!f) return;
+    if (!(f.type === 'application/pdf' || /^image\//.test(f.type))) return montrerErreur('Dépose un PDF ou une image (capture d\'écran).');
+    if (f.size > 10 * 1024 * 1024) return montrerErreur('Fichier trop lourd : 10 Mo maximum. Une capture d\'écran fera l\'affaire.');
+    choisi = f;
+    document.getElementById('fichierNom').textContent = f.name;
+    document.getElementById('fichierChoisi').hidden = false;
+    depot.hidden = true;
+    envoyer.disabled = false;
+  }
+  champ.addEventListener('change', function(){ prendre(champ.files && champ.files[0]); });
+  ['dragenter','dragover'].forEach(function(t){ depot.addEventListener(t, function(e){ e.preventDefault(); depot.classList.add('survol'); }); });
+  ['dragleave','drop'].forEach(function(t){ depot.addEventListener(t, function(e){ e.preventDefault(); depot.classList.remove('survol'); }); });
+  depot.addEventListener('drop', function(e){ prendre(e.dataTransfer.files && e.dataTransfer.files[0]); });
+  document.getElementById('fichierRetirer').addEventListener('click', function(){
+    choisi = null; champ.value = '';
+    document.getElementById('fichierChoisi').hidden = true; depot.hidden = false; envoyer.disabled = true;
+  });
+
+  envoyer.addEventListener('click', function(){
+    if (!choisi) return;
+    if (!etat.lead || !etat.jeton) return montrerErreur('Cette page doit être ouverte depuis ta demande d\'accès. Reviens au formulaire de la page de la masterclass.');
+    montrerErreur('');
+    envoyer.disabled = true;
+    envoyer.firstChild.textContent = 'Envoi en cours… ';
+    var jauge = document.getElementById('jauge'), barre = document.getElementById('jaugeBarre');
+    jauge.hidden = false; barre.style.width = '0';
+
+    var ext = (choisi.name.split('.').pop() || 'pdf').toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 5) || 'pdf';
+    var chemin = etat.lead + '/facture-' + Date.now() + '.' + ext;
+
+    // XMLHttpRequest plutôt que fetch : lui seul donne la progression de
+    // l'envoi, utile sur une connexion lente.
+    var x = new XMLHttpRequest();
+    x.open('POST', SUPABASE_URL + '/storage/v1/object/factures-auto/' + chemin);
+    x.setRequestHeader('apikey', SUPABASE_ANON_KEY);
+    x.setRequestHeader('Authorization', 'Bearer ' + SUPABASE_ANON_KEY);
+    x.setRequestHeader('Content-Type', choisi.type || 'application/octet-stream');
+    x.setRequestHeader('x-upsert', 'false');
+    x.upload.onprogress = function(e){ if (e.lengthComputable) barre.style.width = Math.round(e.loaded / e.total * 100) + '%'; };
+    x.onerror = function(){ echec('La connexion a coupé pendant l\'envoi. Réessaie.'); };
+    x.onload = function(){
+      if (x.status < 200 || x.status >= 300){
+        console.error('Envoi de la facture refusé :', x.status, x.responseText);
+        return echec('L\'envoi a échoué. Réessaie dans un instant.');
+      }
+      fetch(SUPABASE_URL + '/rest/v1/rpc/deposer_facture_auto', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY },
+        body: JSON.stringify({ p_lead: etat.lead, p_jeton: etat.jeton, p_chemin: chemin, p_nom: choisi.name })
+      }).then(function(r){ return r.ok ? r.json() : Promise.reject(r); })
+        .then(function(ok){
+          if (ok !== true) return echec('Ta facture n\'a pas pu être reliée à ta demande. Recommence depuis le formulaire de la page de la masterclass.');
+          suivre('Parcours auto · facture déposée');
+          etat.facture = true; sauver();
+          montrer(TOTAL + 1);
+        })
+        .catch(function(){ echec('L\'envoi a échoué. Réessaie dans un instant.'); });
+    };
+    x.send(choisi);
+
+    function echec(t){
+      jauge.hidden = true;
+      envoyer.disabled = false;
+      envoyer.firstChild.textContent = 'Envoyer ma facture ';
+      montrerErreur(t);
+    }
+  });
+
+  /* ---------------- Au chargement ---------------- */
+  if (!etat.lead) montrer('perdu');
+  else if (etat.facture) montrer(TOTAL + 1);
+  else montrer(etat.etape || 0);
+})();
+</script>
+</body>
+</html>
