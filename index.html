@@ -721,8 +721,25 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
       </div>
 
       <div class="col">
-        <!-- VSL retirée le 08/11 à la demande de Martin. Pour la remettre : le bloc
-             « vsl-cadre » est dans le commit 8e2f624 (vidéo videos/vsl-black-friday.mp4). -->
+        <!-- La VSL : démarre seule, sans le son (muted + playsinline : c'est ce qui autorise
+             la lecture automatique, iPhone compris). Un appui active le son et la reprend du
+             début. Fichier : videos/vsl-black-friday.mp4 (720p, démarrage rapide). -->
+        <div class="vsl-cadre verticale" id="vslCadre">
+          <span class="vsl-puce"><svg><use href="#i-play"/></svg>Regarde la vidéo</span>
+          <div class="vsl" id="vsl" style="--ratio:9 / 16">
+            <video id="vslVideo" src="videos/vsl-black-friday.mp4" poster="img/vsl-affiche.webp"
+                   muted autoplay loop playsinline webkit-playsinline preload="auto"
+                   disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noplaybackrate noremoteplayback"
+                   aria-label="Vidéo de présentation de la Masterclass Black Friday"></video>
+            <button type="button" class="vsl-muet" id="vslMuet" aria-label="Activer le son de la vidéo">
+              <span class="vsl-muet-carte">
+                <span class="vsl-muet-icone"><svg aria-hidden="true"><use href="#i-muet"/></svg></span>
+                <span><b id="vslMuetTitre">La vidéo a commencé</b><small>Appuie pour activer le son</small></span>
+              </span>
+            </button>
+          </div>
+        </div>
+
         <div class="bloc-cta">
           <button type="button" class="cta" data-open-modal>JE VEUX MON ACCÈS <svg><use href="#i-chevron"/></svg></button>
           <p class="sous-cta"><span class="point-vert" aria-hidden="true"></span>Un membre de l’équipe t’appelle sur WhatsApp dans les 10 minutes.</p>
