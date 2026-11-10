@@ -1802,16 +1802,20 @@ function envoyerLead(lead, enPlus){
     // Avec le paiement, le lead est créé en « opt-in » : il n'entre dans les
     // Leads du jour que quand Whop confirme les 9,99 €.
     var idLead = PAIEMENT && !leurre && !africain ? uuid() : null;
+    // Numéro africain, parcours automatique pas encore branché : jamais dans
+    // les Leads du jour, il attend dans Opt-in (sans paiement).
+    var horsListe = !leurre && africain;
+    var enPlus = idLead ? { id: idLead, vivier: 'optin' } : horsListe ? { vivier: 'optin' } : null;
 
     // Champ leurre rempli = robot : on simule un succès sans rien enregistrer.
-    (leurre ? Promise.resolve() : envoyerLead(lead, idLead ? { id: idLead, vivier: 'optin' } : null))
+    (leurre ? Promise.resolve() : envoyerLead(lead, enPlus))
       .then(function(){
         suivre('Formulaire envoyé');
         if (s.ref) suivre('Formulaire envoyé · ' + s.ref);
         if (!leurre) conversion();
         envoiEnCours = false;
         if (idLead) afficherPaiement(lead, idLead);
-        else montrerMerci(false);
+        else montrerMerci(false, horsListe);
       })
       .catch(function(err){
         montrer(err && err.message === 'config'
@@ -1825,8 +1829,11 @@ function envoyerLead(lead, enPlus){
       });
   });
 
-  function montrerMerci(paye){
+  function montrerMerci(paye, enAttente){
     if (paye) document.getElementById('merciTitre').textContent = 'C’est payé.';
+    // Pas d'appel dans les 10 minutes pour une demande mise en attente :
+    // on ne le promet pas.
+    if (enAttente) document.querySelector('#blocMerci p').textContent = 'Ta demande est bien enregistrée. L’équipe revient vers toi sur WhatsApp.';
     document.getElementById('blocFormulaire').hidden = true;
     document.getElementById('blocPaiement').hidden = true;
     var merci = document.getElementById('blocMerci');
