@@ -23,6 +23,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<script>window.va = window.va || function(){ (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script>document.documentElement.classList.add('js');</script>
 
@@ -1496,6 +1497,33 @@ function envoyerLead(lead, enPlus){
   var SUIVI = suivi();
   CLES.forEach(function(k){ document.getElementById('h_' + k).value = SUIVI[k] || ''; });
   if (SUIVI.ref) suivre('Visite · ' + SUIVI.ref);
+
+  /* ---------------- Le compteur de visites (onglet Sources du CRM) ----------------
+     Un identifiant tiré au hasard, gardé dans le navigateur : ni nom, ni
+     adresse IP. La base compte un visiteur une fois par jour et par source
+     (visite_compter, CRM Marcuus/supabase/09-sources.sql). La source se
+     calcule comme pour les leads : utm_source, sinon le lien court (/insta,
+     ?ref=…), sinon le site d'où l'on vient, sinon direct. */
+  (function(){
+    if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return;
+    var ref = document.referrer || '', origine = SUIVI.utm_source || SUIVI.ref || '';
+    if (!origine && ref && !/blackfriday-marcuus\.com|lpmarcusss\.vercel\.app/i.test(ref)){
+      origine = /tiktok/i.test(ref) ? 'tiktok' : /instagram/i.test(ref) ? 'instagram' : /snapchat/i.test(ref) ? 'snapchat'
+        : /facebook|fb\./i.test(ref) ? 'facebook' : /youtube|youtu\.be/i.test(ref) ? 'youtube' : /google/i.test(ref) ? 'google'
+        : /com\.google\.android\.gm|mail\./i.test(ref) ? 'e-mail'
+        : ref.replace(/^[a-z][a-z0-9+.-]*:\/\/(www\.)?([^\/]+).*$/i, '$2');
+    }
+    var id;
+    try {
+      id = localStorage.getItem('visiteur');
+      if (!id){ id = uuid(); localStorage.setItem('visiteur', id); }
+    } catch(e){ id = uuid(); }
+    fetch(SUPABASE_URL + '/rest/v1/rpc/visite_compter', {
+      method: 'POST', keepalive: true,
+      headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY },
+      body: JSON.stringify({ p_visiteur: id, p_origine: (origine || 'direct').toLowerCase() })
+    }).catch(function(){});
+  })();
 
   /* ---------------- La VSL ----------------
      Démarre seule, sans le son, en boucle. Un appui : la vidéo repart du
