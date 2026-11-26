@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-da="rose">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Vends ton premier produit en 7 jours — Marcuus Lawrence</title>
 <meta name="description" content="Vends ton premier produit en 7 jours avec la méthode de Marcuus et l’IA, et accède gratuitement à son programme : le plan d’action, ton cockpit de lancement et un coach IA sur WhatsApp.">
-<meta name="theme-color" content="#FFFFFF">
+<meta name="theme-color" content="#0B080A">
 <!-- Indexation : à confirmer avec Martin. Retirer cette ligne pour laisser Google indexer la page. -->
 <meta name="robots" content="noindex">
 
@@ -22,7 +22,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Lora:wght@400;700&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 <script>window.va = window.va || function(){ (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script>document.documentElement.classList.add('js');</script>
@@ -672,6 +672,150 @@ footer{ background:var(--footer); color:#fff; padding:60px 0 120px; text-align:c
   .carrousel{ margin-left:0; margin-right:0; padding-left:0; padding-right:0; scroll-padding:0; }
   .carte.etude{ flex-basis:calc((100% - 2 * 16px) / 3.25); max-width:none; scroll-snap-align:start; }
 }
+</style>
+<style>
+/* ============================================================
+   DA SOMBRE — par-dessus la charte d'origine. La palette se choisit
+   avec l'attribut data-da de <html> : rouge, neon ou rose.
+   ============================================================ */
+html[data-da="rouge"]{
+  --fond:#0A0909; --fond-2:#120F0F; --surface:#171313; --surface-2:#1E1818;
+  --accent:#FF2A3A; --accent-2:#C30F1E; --acc:255,42,58; --accent-clair:#FF8A92;
+  --titre-police:'Archivo', 'Arial Narrow', sans-serif;
+}
+html[data-da="neon"]{
+  --fond:#07060F; --fond-2:#0C0A1A; --surface:#121027; --surface-2:#181535;
+  --accent:#8B5CFF; --accent-2:#3D7BFF; --acc:139,92,255; --accent-clair:#B9A2FF;
+  --titre-police:'Space Grotesk', 'Segoe UI', sans-serif;
+}
+html[data-da="rose"]{
+  --fond:#0B080A; --fond-2:#130D11; --surface:#1A1217; --surface-2:#22171E;
+  --accent:#FF4FA3; --accent-2:#E0237E; --acc:255,79,163; --accent-clair:#FFA3CF;
+  --titre-police:'Playfair Display', Georgia, serif;
+}
+html[data-da]{
+  --blanc:var(--surface); --creme:var(--surface-2);
+  --peche:var(--fond-2); --peche-2:var(--fond-2); --peche-voile:rgba(var(--acc),.16);
+  --corail:var(--accent); --corail-fonce:var(--accent-clair); --corail-bord:rgba(var(--acc),.45);
+  --noir:#FFFFFF; --texte:rgba(255,255,255,.78); --texte-liste:rgba(255,255,255,.86); --gris:rgba(255,255,255,.55);
+  --trait:rgba(255,255,255,.09); --gris-bord:rgba(255,255,255,.09);
+  --vert-1:var(--accent); --vert-2:var(--accent-2); --vert-rond:var(--accent); --vert-pale:rgba(var(--acc),.16); --vert-coche:var(--accent-clair);
+  --footer:#000; --grain:none;
+  --serif:var(--titre-police);
+  --ombre-carte:0 1px 0 rgba(255,255,255,.04) inset, 0 20px 40px -26px rgba(0,0,0,.9);
+  --ombre-corail:0 0 0 1px rgba(var(--acc),.18), 0 24px 60px -26px rgba(var(--acc),.55);
+  color-scheme:dark;
+}
+html[data-da] body{ background:var(--fond); color:var(--texte); }
+html[data-da] ::selection{ background:rgba(var(--acc),.35); color:#fff; }
+html[data-da] .peche::before{ background:linear-gradient(90deg, transparent, rgba(var(--acc),.45), transparent); }
+html[data-da] h1 em, html[data-da] h2 em, html[data-da] h3 em, html[data-da] .accroche em{ text-shadow:0 0 28px rgba(var(--acc),.55); }
+html[data-da="rouge"] h1, html[data-da="rouge"] h2{ text-transform:uppercase; letter-spacing:-.02em; font-weight:800; }
+html[data-da="rouge"] h1{ font-size:clamp(34px, 9.6vw, 60px); line-height:1; }
+html[data-da="neon"] h1, html[data-da="neon"] h2, html[data-da="neon"] h3{ letter-spacing:-.045em; }
+html[data-da="neon"] h1 em, html[data-da="neon"] h2 em{
+  background:linear-gradient(95deg, var(--accent-clair), var(--accent) 45%, var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent;
+  text-shadow:none; filter:drop-shadow(0 0 18px rgba(var(--acc),.55));
+}
+html[data-da="rose"] h1 em, html[data-da="rose"] h2 em{ font-style:italic; }
+html[data-da="rose"] h1, html[data-da="rose"] h2, html[data-da="rose"] h3, html[data-da="rose"] summary, html[data-da="rose"] .accroche, html[data-da="rose"] .etude-chiffre, html[data-da="rose"] .date-jour{ font-variant-numeric:lining-nums; }
+
+/* Trait sous le mot clé : même tracé, à la couleur de l'accent */
+html[data-da] .trait-main::after{
+  background:var(--accent);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 20' preserveAspectRatio='none'%3E%3Cpath d='M3 14 C 60 5, 140 3, 297 9' fill='none' stroke='%23000' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 20' preserveAspectRatio='none'%3E%3Cpath d='M3 14 C 60 5, 140 3, 297 9' fill='none' stroke='%23000' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
+  filter:drop-shadow(0 0 6px rgba(var(--acc),.8));
+}
+
+/* Titre texte */
+html[data-da] .marque{ color:#fff; }
+html[data-da] .marque-trait{ background:linear-gradient(180deg, transparent, var(--accent) 25%, var(--accent) 75%, transparent); }
+html[data-da] .marque-2, html[data-da] .marque.sur-noir .marque-2{ background-image:linear-gradient(180deg, #FFFFFF 35%, var(--accent-clair) 100%); }
+html[data-da] .marque-3{ box-shadow:0 0 14px rgba(var(--acc),.7); }
+
+/* Bouton */
+html[data-da] .cta{
+  background:linear-gradient(100deg, var(--accent) 0%, var(--accent-2) 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.3), 0 0 0 1px rgba(var(--acc),.5), 0 16px 34px -12px rgba(var(--acc),.75), 0 0 60px -18px rgba(var(--acc),.9);
+}
+html[data-da] .barre .cta{ box-shadow:inset 0 1px 0 rgba(255,255,255,.3), 0 10px 26px -10px rgba(var(--acc),.9); }
+
+/* Hero et fonds */
+html[data-da] .haut{
+  background:
+    radial-gradient(55% 45% at 100% 0%, rgba(var(--acc),.30) 0%, rgba(var(--acc),0) 70%),
+    radial-gradient(60% 40% at 0% 60%, rgba(var(--acc),.16) 0%, rgba(var(--acc),0) 70%),
+    linear-gradient(180deg, var(--fond) 0%, var(--fond-2) 100%);
+}
+html[data-da="neon"] .haut{
+  background:
+    radial-gradient(55% 45% at 100% 0%, rgba(61,123,255,.32) 0%, rgba(61,123,255,0) 70%),
+    radial-gradient(60% 45% at 0% 55%, rgba(139,92,255,.30) 0%, rgba(139,92,255,0) 70%),
+    linear-gradient(180deg, var(--fond) 0%, var(--fond-2) 100%);
+}
+html[data-da="neon"] .haut::after{ /* grille néon, très discrète */
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:.35;
+  background-image:linear-gradient(rgba(139,92,255,.18) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,255,.18) 1px, transparent 1px);
+  background-size:44px 44px; -webkit-mask:radial-gradient(70% 60% at 50% 0%, #000, transparent); mask:radial-gradient(70% 60% at 50% 0%, #000, transparent);
+}
+html[data-da] .haut > *{ position:relative; z-index:1; }
+html[data-da] .surtitre{ background:rgba(255,255,255,.04); color:rgba(255,255,255,.85); box-shadow:0 0 24px -10px rgba(var(--acc),.8); }
+html[data-da] .surtitre::before{ box-shadow:0 0 0 4px rgba(var(--acc),.22), 0 0 10px rgba(var(--acc),.9); }
+html[data-da] .avatars img{ border-color:var(--fond); }
+
+/* Textes écrits en dur dans la charte claire */
+html[data-da] .hero .accroche, html[data-da] .jour-cle, html[data-da] .programme li, html[data-da] .vagues span{ color:rgba(255,255,255,.9); }
+html[data-da] .lettre p, html[data-da] .recu p, html[data-da] .partenariat, html[data-da] .pour-qui .petite p,
+html[data-da] .etape p, html[data-da] .etude-txt p:last-child, html[data-da] .faq details p,
+html[data-da] .consent, html[data-da] .paie-alerte{ color:rgba(255,255,255,.72); }
+html[data-da] .duo .neutre h3{ color:rgba(255,255,255,.7); }
+html[data-da] .duo .neutre .liste li{ color:rgba(255,255,255,.55); }
+
+/* Cartes et blocs blancs */
+html[data-da] .carte.positive{ background:radial-gradient(120% 70% at 100% 0%, rgba(var(--acc),.16) 0%, rgba(var(--acc),0) 60%), var(--surface); }
+html[data-da] .rond.croix{ background:rgba(255,255,255,.07); color:rgba(255,255,255,.55); }
+html[data-da] .rond-l.coche{ color:#fff; box-shadow:0 0 16px -2px rgba(var(--acc),.8); }
+html[data-da] .date, html[data-da] .citation, html[data-da] .recu, html[data-da] .niveau, html[data-da] .vagues li,
+html[data-da] .fleche, html[data-da] .capture, html[data-da] .faq details{ background:var(--surface); }
+html[data-da] .date-jour{ text-shadow:0 0 18px rgba(255,255,255,.4); }
+html[data-da] .signature img{ box-shadow:0 0 0 3px var(--fond), 0 0 0 4px var(--accent); }
+html[data-da] .recu.bonus{ background:radial-gradient(120% 120% at 100% 0%, rgba(var(--acc),.2) 0%, rgba(var(--acc),0) 70%), var(--surface-2); }
+html[data-da] .recu.bonus .recu-ico{ box-shadow:0 0 22px -4px rgba(var(--acc),.9); }
+html[data-da] .recu-ico{ background:rgba(var(--acc),.1); }
+html[data-da] .badge-bonus{ color:var(--fond); }
+html[data-da] .etape-num{ box-shadow:0 0 0 6px var(--fond), 0 0 0 7px var(--corail-bord), 0 0 24px -4px rgba(var(--acc),.9); }
+html[data-da] .pour-qui .etape-num{ box-shadow:0 0 0 6px var(--fond-2), 0 0 0 7px var(--corail-bord); }
+html[data-da] .points span{ background:rgba(255,255,255,.18); }
+html[data-da] .points span.actif{ background:var(--accent); box-shadow:0 0 10px rgba(var(--acc),.9); }
+html[data-da] .capture{ box-shadow:0 0 0 1px var(--trait), 0 18px 34px -22px rgba(var(--acc),.8); }
+html[data-da] .faq details[open]{ background:linear-gradient(180deg, rgba(var(--acc),.1), var(--surface) 70%); }
+html[data-da] .faq details[open] summary .rond{ color:#fff; }
+html[data-da] .final-carte{
+  background:
+    radial-gradient(80% 60% at 100% 0%, rgba(var(--acc),.35) 0%, rgba(var(--acc),0) 70%),
+    radial-gradient(70% 60% at 0% 100%, rgba(var(--acc),.18) 0%, rgba(var(--acc),0) 70%),
+    var(--surface);
+}
+
+/* Formulaire */
+html[data-da] .overlay{ background:rgba(0,0,0,.72); }
+html[data-da] .modal{ background:var(--surface); border-top:1px solid rgba(var(--acc),.35); box-shadow:0 -20px 80px -30px rgba(var(--acc),.6); }
+html[data-da] .modal::before{ background:rgba(255,255,255,.2); }
+html[data-da] .modal-fermer{ background:rgba(255,255,255,.08); color:#fff; }
+html[data-da] .champ label{ color:rgba(255,255,255,.85); }
+html[data-da] .champ input, html[data-da] .champ select, html[data-da] .recap{ background:var(--fond); border-color:rgba(255,255,255,.12); color:#fff; }
+html[data-da] .champ input::placeholder{ color:rgba(255,255,255,.3); }
+html[data-da] .champ input:focus, html[data-da] .champ select:focus{ background:var(--fond); box-shadow:0 0 0 4px rgba(var(--acc),.22); }
+html[data-da] .tel select{
+  background:var(--fond) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23FFFFFF' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 12px center / 11px 8px;
+}
+html[data-da] .consent input{ background:var(--fond); border-color:rgba(255,255,255,.25); }
+html[data-da] .consent input:focus-visible{ outline-color:rgba(var(--acc),.5); }
+
+/* Barre flottante, loupe */
+html[data-da] .barre{ background:rgba(10,9,12,.78); border-color:rgba(var(--acc),.3); box-shadow:0 18px 40px -16px rgba(0,0,0,.9); }
+html[data-da] .loupe .modal-fermer{ background:var(--surface); }
 </style>
 </head>
 <body>
